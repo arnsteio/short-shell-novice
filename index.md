@@ -46,6 +46,7 @@ These lessons will start you on a path towards using these resources effectively
 3.  [Creating Things](02-create.html)
 4.  [Pipes and Filters](03-pipefilter.html)
 5.  [Getting the data set](04-dataset.html)
+5.  [Setting up R and other things](05-setup.html)
 
 <!--(We're dropping these because of time constraints
 5.  [Loops](04-loop.html)
