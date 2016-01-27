@@ -28,7 +28,7 @@ While downloading it will show a progress bar with the following information:
 * Current download speed (e.g. 68.2K/s)
 * Remaining time to download (e.g. eta 34 seconds)
 
-'wget' has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the "-c" 
+`wget` has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the "-c" 
 option:
 
 ~~~ {.bash}
@@ -37,7 +37,7 @@ $ wget -c secret_data_url
 
 This will continue the download from where it was interrupted.
 
-`wget` has lots of other options. To find out what they are, we can type `man wget`. `man` is the Unix "manual" command: it prints a description 
+To find out what other options `wget` accepts, we can type `man wget`. `man` is the Unix "manual" command: it prints a description 
 of a command and its options, and (if you're lucky) provides a few examples of how to use it.
 
 To navigate through the `man` pages, you may use the up and down arrow keys to move line-by-line, or try the "b" and spacebar keys to skip up 

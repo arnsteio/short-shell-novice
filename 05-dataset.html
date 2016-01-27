@@ -38,9 +38,9 @@
 </ul>
 </div>
 </section>
-<p>To follow this workshop you need to get a hold of the data set. We’ll use the command line for that. You can either get the data from the internet, or via a USB stick the teachers will provide.</p>
+<p>To follow the rest of this workshop you need to get a hold of the data set. We’ll use the command line for that. You can either get the data from the internet, or via a USB stick the teachers will provide.</p>
 <h2 id="getting-data-from-the-internet">Getting data from the Internet</h2>
-<p>The <strong>wget</strong> utility is the best option to download files from the internet. wget can handle complex download situations including large file downloads, recursive downloads, non-interactive downloads and multiple file downloads. The following example downloads the data set - a single file - from the internet and stores in the current directory:</p>
+<p>The <strong>wget</strong> utility is the best option to download files from the internet. ‘wget’ can handle complex download situations including large file downloads, recursive downloads, non-interactive downloads and multiple file downloads. The following example downloads the data set - a single file - from the internet and stores in the current directory:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> secret_data_url</code></pre>
 <p>While downloading it will show a progress bar with the following information:</p>
 <ul>
@@ -49,7 +49,7 @@
 <li>Current download speed (e.g. 68.2K/s)</li>
 <li>Remaining time to download (e.g. eta 34 seconds)</li>
 </ul>
-<p>wget has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the “-c” option:</p>
+<p>‘wget’ has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the “-c” option:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> -c secret_data_url</code></pre>
 <p>This will continue the download from where it was interrupted.</p>
 <p><code>wget</code> has lots of other options. To find out what they are, we can type <code>man wget</code>. <code>man</code> is the Unix “manual” command: it prints a description of a command and its options, and (if you’re lucky) provides a few examples of how to use it.</p>
