@@ -9,11 +9,11 @@ minutes: 15
 > *   Using the command line to get a local copy of the data set
 > 
 
-To follow this workshop you need to get a hold of the data set. We'll use the command line for that. You can either get the data from the 
-internet, or via a USB stick the teachers will provide.
+To follow the rest of this workshop you need to get a hold of the data set. We'll use the command line for that. You can either get the data 
+from the internet, or via a USB stick the teachers will provide.
 
 ## Getting data from the Internet
-The **wget** utility is the best option to download files from the internet. wget can handle complex download situations including large file 
+The **wget** utility is the best option to download files from the internet. 'wget' can handle complex download situations including large file 
 downloads, recursive downloads, non-interactive downloads and multiple file downloads. The following example downloads the data set - a single 
 file - from the internet and stores in the current directory:
 
@@ -28,7 +28,7 @@ While downloading it will show a progress bar with the following information:
 * Current download speed (e.g. 68.2K/s)
 * Remaining time to download (e.g. eta 34 seconds)
 
-wget has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the "-c" 
+'wget' has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the "-c" 
 option:
 
 ~~~ {.bash}
