@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: The Unix Shell</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">The Unix Shell</h1></a>
+          <h2 class="subtitle">Getting the dataset</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Using the command line to get a local copy of the data set</li>
+</ul>
+</div>
+</section>
+<p>To follow this workshop you need to get a hold of the data set. We’ll use the command line for that. You can either get the data from the internet, or via a USB stick the teachers will provide.</p>
+<h2 id="getting-data-from-the-internet">Getting data from the Internet</h2>
+<p>The <strong>wget</strong> utility is the best option to download files from the internet. wget can handle complex download situations including large file downloads, recursive downloads, non-interactive downloads and multiple file downloads. The following example downloads the data set - a single file - from the internet and stores in the current directory:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> secret_data_url</code></pre>
+<p>While downloading it will show a progress bar with the following information:</p>
+<ul>
+<li>percentage of download completion (e.g. 31%)</li>
+<li>Total amount of bytes downloaded so far (e.g. 1,213,592 bytes)</li>
+<li>Current download speed (e.g. 68.2K/s)</li>
+<li>Remaining time to download (e.g. eta 34 seconds)</li>
+</ul>
+<p>wget has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the “-c” option:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> -c secret_data_url</code></pre>
+<p>This will continue the download from where it was interrupted.</p>
+<p><code>wget</code> has lots of other options. To find out what they are, we can type <code>man wget</code>. <code>man</code> is the Unix “manual” command: it prints a description of a command and its options, and (if you’re lucky) provides a few examples of how to use it.</p>
+<p>To navigate through the <code>man</code> pages, you may use the up and down arrow keys to move line-by-line, or try the “b” and spacebar keys to skip up and down by full page. Quit the <code>man</code> pages by typing “q”.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> wget</code></pre>
+<pre class="output"><code>WGET(1)                                                       GNU Wget                                                      WGET(1)
+
+NAME
+       Wget - The non-interactive network downloader.
+
+SYNOPSIS
+       wget [option]... [URL]...
+
+DESCRIPTION
+       GNU Wget is a free utility for non-interactive download of files from the Web.  It supports HTTP, HTTPS, and FTP protocols, as well as
+       retrieval through HTTP proxies.
+
+       Wget is non-interactive, meaning that it can work in the background, while the user is not logged on.  This allows you to start a 
+       retrieval and disconnect from the system, letting Wget finish the work.  By contrast, most of the Web browsers require constant user&#39;s 
+       presence, which can be a great hindrance when transferring a lot of data.
+       ...        ...        ...
+
+OPTIONS
+   Option Syntax
+       Since Wget uses GNU getopt to process command-line arguments, every option has a long form along with the short one.  Long options are 
+       more convenient to remember, but take time to type.  You may freely mix different option styles, or specify options after the 
+       command-line arguments.  Thus you may write:
+
+               wget -r --tries=10 http://fly.srk.fer.hr/ -o log
+       ...        ...        ...
+</code></pre>
+<h2 id="getting-data-from-a-usb-stick">Getting data from a USB stick</h2>
+<p>We went over <strong>cp</strong> in an earlier lesson on “creating things”:</p>
+<blockquote>
+<p>The <code>cp</code> command works very much like <code>mv</code>, except it copies a file instead of moving it.</p>
+</blockquote>
+<p>On Linux, a USB stick usually mounts under /media/<your_user_name>. You can check by putting in the USB drive and doing</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> /media</code></pre>
+<p>With that info, can you build up a command line to copy the data to your machine? It should look something like</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> /media/<span class="kw">&lt;</span>username<span class="kw">&gt;</span>/secret_data_path .</code></pre>
+<p>If you struggle,</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> cp</code></pre>
+<p>could help.</p>
+<h2 id="verifying-that-the-data-is-in-place">Verifying that the data is in place</h2>
+<p>Our earlier lesson also went over the use of <code>ls</code>. Can you use it to verify that you have the data set in place on your computer?</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/shell-novice">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
