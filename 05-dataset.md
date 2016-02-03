@@ -7,7 +7,7 @@ minutes: 15
 > ## Learning Objectives {.objectives}
 >
 > *   Using the command line to get a local copy of the data set
-> 
+> *   Using the "man" command 
 
 To follow the rest of this workshop you need to get a hold of the data set. We'll use the command line for that. You can either get the data 
 from the internet, or via a USB stick the teachers will provide.
