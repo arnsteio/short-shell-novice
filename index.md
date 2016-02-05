@@ -28,15 +28,15 @@ These lessons will start you on a path towards using these resources effectively
 >
 > You need to download some files to follow this lesson:
 >
-> 1. Download [shell-novice-data.zip](./shell-novice-data.zip) and move the file to your Desktop.
-> 2. Double-click on the zip file to unzip it. You should end up with a new folder called `data-shell`.
+> 1. Download [CHM_InSitu_Data.zip](http://www.neonhighered.org/Data/LidarActivity/CHM_InSitu_Data.zip) and move the file to your Desktop.
+> 2. Double-click on the zip file to unzip it. You should end up with several new folders - `DigitalSurfaceModel`, `DigitalTerrainModel`, `InSitu_Data` and `PlotCentroid_Shapefile`.
 > 3. Open a terminal and type:
 >
 > ~~~ {.input}
 > $ cd
 > ~~~
 >
-> In the lesson, you will find out how to access the data in this folder.  
+> In the lesson, you will find out how to access the data in these folders.  
 
 
 ## Topics

@@ -211,11 +211,11 @@ we want a listing of something other than our current working directory:
 $ ls -F Desktop
 ~~~
 ~~~ {.output}
-data-shell/
+CHM_InSitu_Data.zip  DigitalSurfaceModel/  DigitalTerrainModel/  InSitu_Data/  PlotCentroid_Shapefile/
 ~~~
 
 Your output should be a list of all the files and sub-directories on your 
-Desktop, including the `data-shell` directory you downloaded at 
+Desktop, including the directories you downloaded at 
 the start of the lesson.  Take a look at your Desktop to confirm that 
 your output is accurate.  
 
@@ -226,18 +226,17 @@ it's possible to put hundreds of files in our home directory,
 just as it's possible to pile hundreds of printed papers on our desk,
 but it's a self-defeating strategy.
 
-Now that we know the `data-shell` directory is located on our Desktop, we 
+Now that we know the directories are located on our Desktop, we 
 can do two things.  
 
 First, we can look at its contents, using the same strategy as before, passing 
 a directory name to `ls`: 
 
 ~~~ {.bash}
-$ ls -F Desktop/data-shell
+$ ls -F Desktop/InSitu_Data/
 ~~~
 ~~~ {.output}
-creatures/          molecules/          notes.txt           solar.pdf
-data/               north-pacific-gyre/ pizza.cfg           writing/
+D17_2013_vegStr.csv  D17_2013_vegStr_metadata_desc.csv  lidarExtractedValues.csv  SJERPlotCentroids.csv
 ~~~
 
 Second, we can actually change our location to a different directory, so 
@@ -251,45 +250,43 @@ which is a bit misleading:
 the command doesn't change the directory,
 it changes the shell's idea of what directory we are in.
 
-Let's say we want to move to the `data` directory we saw above.  We can 
+Let's say we want to move to the `InSitu_Data` directory we saw above.  We can 
 use the following series of commands to get there: 
 
 ~~~ {.bash}
 $ cd Desktop
-$ cd data-shell
-$ cd data
+$ cd InSitu_Data
 ~~~
 
 These commands will move us from our home directory onto our Desktop, then into 
-the `data-shell` directory, then into the `data` directory.  `cd` doesn't print anything,
+the `InSitu_Data` directory.  `cd` doesn't print anything,
 but if we run `pwd` after it, we can see that we are now 
-in `/Users/nelle/Desktop/data-shell/data`.
+in `/Users/nelle/Desktop/InSitu_Data`.
 If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/Desktop/data-shell/data`,
+it lists the contents of `/Users/nelle/Desktop/InSitu_Data`,
 because that's where we now are:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/Desktop/data-shell/data
+/Users/nelle/Desktop/InSitu_Data
 ~~~
 ~~~ {.bash}
 $ ls -F
 ~~~
 ~~~ {.output}
-amino-acids.txt   elements/     pdb/	        salmon.txt
-animals.txt       morse.txt     planets.txt     sunspot.txt
+D17_2013_vegStr.csv  D17_2013_vegStr_metadata_desc.csv  lidarExtractedValues.csv  SJERPlotCentroids.csv
 ~~~
 
 We now know how to go down the directory tree:
 how do we go up?  We might try the following: 
 
 ~~~{.bash}
-cd data-shell
+cd Desktop
 ~~~
 ~~~{.error}
--bash: cd: data-shell: No such file or directory
+-bash: cd: Desktop: No such file or directory
 ~~~
 
 But we get an error!  Why is this?  
@@ -311,13 +308,13 @@ $ cd ..
 or more succinctly,
 the **parent** of the current directory.
 Sure enough,
-if we run `pwd` after running `cd ..`, we're back in `/Users/nelle/Desktop/data-shell`:
+if we run `pwd` after running `cd ..`, we're back in `/Users/nelle/Desktop/`:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/Desktop/data-shell
+/Users/nelle/Desktop/
 ~~~
 
 The special directory `..` doesn't usually show up when we run `ls`.  If we want 
@@ -384,12 +381,12 @@ $ pwd
 It turns out that `cd` without an argument will return you to your home directory, 
 which is great if you've gotten lost in your own filesystem.  
 
-Let's try returning to the `data` directory from before.  Last time, we used 
+Let's try returning to the `InSitu_Data` directory from before.  Last time, we used 
 three commands, but we can actually string together the list of directories 
-to move to `data` in one step: 
+to move to `InSitu_Data/` in one step: 
 
 ~~~ {.bash}
-$ cd Desktop/data-shell/data
+$ cd Desktop/InSitu_Data/
 ~~~
 
 Check that we've moved to the right place by running `pwd` and `ls -F`.  
@@ -418,10 +415,10 @@ to move to `data-shell`.
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/Desktop/data-shell/data
+/Users/nelle/Desktop/InSitu_Data/
 ~~~
 ~~~ {.bash}
-$ cd /Users/nelle/Desktop/data-shell
+$ cd /Users/nelle/Desktop/
 ~~~
 
 Run `pwd` and `ls -F` to ensure that we're in the directory we expect.  
@@ -440,6 +437,7 @@ Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
 > and forth between directories. The difference between `cd ..` and `cd -` is 
 > that the former brings you *up*, while the later brings you *back*. 
 
+##FIXME
 ### Nelle's Pipeline: Organizing Files
 
 Knowing just this much about files and directories,

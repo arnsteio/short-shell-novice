@@ -18,7 +18,7 @@ downloads, recursive downloads, non-interactive downloads and multiple file down
 file - from the internet and stores in the current directory:
 
 ~~~ {.bash}
-$ wget secret_data_url
+$ wget http://neondataskills.org/data/rasterLayers_tif.zip
 ~~~
 
 While downloading it will show a progress bar with the following information:
@@ -32,7 +32,7 @@ While downloading it will show a progress bar with the following information:
 option:
 
 ~~~ {.bash}
-$ wget -c secret_data_url
+$ wget -c http://neondataskills.org/data/rasterLayers_tif.zip
 ~~~
 
 This will continue the download from where it was interrupted.
@@ -76,6 +76,7 @@ OPTIONS
 ~~~
 
 ## Getting data from a USB stick
+If the network is slow, you can copy the data set in from a USB stick. 
 We went over **cp** in an earlier lesson on "creating things":
 
 > The `cp` command works very much like `mv`, except it copies a file instead of moving it.
@@ -89,7 +90,7 @@ $ ls /media
 With that info, can you build up a command line to copy the data to your machine? It should look something like
 
 ~~~ {.bash}
-$ cp /media/<username>/secret_data_path .
+$ cp /media/<username>/<data_path>/rasterLayers_tif.zip .
 ~~~
 
 If you struggle, 
@@ -99,6 +100,8 @@ $ man cp
 ~~~
 
 could help.
+
+##FIXME Hans Peter, Jørn Viljar - windows and Mac stuff here?
 
 ## Verifying that the data is in place
 Our earlier lesson also went over the use of `ls`. Can you use it to verify that you have the data set in place on your computer?

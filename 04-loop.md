@@ -16,52 +16,47 @@ minutes: 15
 **Loops** are key to productivity improvements through automation as they allow us to execute 
 commands repetitively. Similar to wildcards and tab completion, using loops also reduces the 
 amount of typing (and typing mistakes).
-Suppose we have several hundred genome data files named `basilisk.dat`, `unicorn.dat`, and so on.
-In this example,
-we'll use the `creatures` directory which only has two example files,
+Suppose we have several hundred surface model files named `SJER2013_DSMHill.tif`, `SJER2013_DSM.tif`, and so on.
+In this example, we'll use the `DigitalSurfaceModel` directory which only has four example files,
 but the principles can be applied to many many more files at once.
 We would like to modify these files, but also save a version of the original files, naming the copies
-`original-basilisk.dat` and `original-unicorn.dat`.
+`original-SJER2013_DSMHill.tif` and `original-SJER2013_DSM.tif`.
 We can't use:
 
 ~~~ {.bash}
-$ cp *.dat original-*.dat
+$ cp *.tif original-*.tif
 ~~~
 
 because that would expand to:
 
 ~~~ {.bash}
-$ cp basilisk.dat unicorn.dat original-*.dat
+$ cp SJER2013_DSMHill.tif SJER2013_DSM.tif original-*.tif
 ~~~
 
 This wouldn't back up our files, instead we get an error:
 
 ~~~ {.error}
-cp: target `original-*.dat' is not a directory
+cp: target `original-*.tif' is not a directory
 ~~~
 
 This a problem arises when `cp` receives more than two inputs. When this happens, it
 expects the last input to be a directory where it can copy all the files it was passed.
-Since there is no directory named `original-*.dat` in the `creatures` directory we get an
+Since there is no directory named `original-*.tif` in the `DigitalSurfaceModel` directory we get an
 error.
 
 Instead, we can use a **loop**
 to do some operation once for each thing in a list.
-Here's a simple example that displays the first three lines of each file in turn:
+Here's a simple example that displays the first three lines of each file in our previous `InSitu_Data` directory:
 
 ~~~ {.bash}
-$ for filename in basilisk.dat unicorn.dat
+$ for filename in  lidarExtractedValues.csv SJERPlotCentroids.csv 
 > do
->    head -3 $filename
+>    head -1 $filename
 > done
 ~~~
 ~~~ {.output}
-COMMON NAME: basilisk
-CLASSIFICATION: basiliscus vulgaris
-UPDATED: 1745-05-02
-COMMON NAME: unicorn
-CLASSIFICATION: equus monoceros
-UPDATED: 1738-11-24
+Rowid_,PLOT_ID,ZONE_CODE,COUNT,AREA,MIN,MAX,RANGE,MEAN,STD,SUM
+Plot_ID,Point,northing,easting,Remarks
 ~~~
 
 When the shell sees the keyword `for`,
@@ -72,9 +67,8 @@ the name of the thing currently being operated on is assigned to
 the **variable** called `filename`.
 Inside the loop,
 we get the variable's value by putting `$` in front of it:
-`$filename` is `basilisk.dat` the first time through the loop,
-`unicorn.dat` the second,
-and so on.
+`$filename` is `lidarExtractedValues.csv` the first time through the loop,
+`SJERPlotCentroids.csv` the second, and so on. In this case, the command tells us what the columns in our Comma Separated Value file are called.
 
 By using the dollar sign we are telling the shell interpreter to treat
 `filename` as a variable name and substitute its value on its place,
@@ -100,16 +94,16 @@ The shell itself doesn't care what the variable is called;
 if we wrote this loop as:
 
 ~~~ {.bash}
-for x in basilisk.dat unicorn.dat
+for x in lidarExtractedValues.csv SJERPlotCentroids.csv
 do
-    head -3 $x
+    head -1 $x
 done
 ~~~
 
 or:
 
 ~~~ {.bash}
-for temperature in basilisk.dat unicorn.dat
+for temperature in lidarExtractedValues.csv SJERPlotCentroids.csv
 do
     head -3 $temperature
 done
@@ -124,16 +118,17 @@ increase the odds that the program won't do what its readers think it does.
 Here's a slightly more complicated loop:
 
 ~~~ {.bash}
-for filename in *.dat
-do
-    echo $filename
-    head -100 $filename | tail -20
+for filename in *.csv
+
+do 
+    echo $filename    
+    head -15 $filename | tail -5
 done
 ~~~
 
-The shell starts by expanding `*.dat` to create the list of files it will process.
+The shell starts by expanding `*.csv` to create the list of files it will process.
 The **loop body**
-then executes two commands for each of those files.
+then executes three commands for each of those files.
 The first, `echo`, just prints its command-line parameters to standard output.
 For example:
 
@@ -153,17 +148,31 @@ since the shell expands `$filename` to be the name of a file,
 Note that we can't write this as:
 
 ~~~ {.bash}
-for filename in *.dat
+for filename in *.csv
 do
     $filename
-    head -100 $filename | tail -20
+    head -20 $filename | tail -5
 done
 ~~~
 
 because then the first time through the loop,
-when `$filename` expanded to `basilisk.dat`, the shell would try to run `basilisk.dat` as a program.
+when `$filename` expanded to `D17_2013_vegStr.csv`, the shell would try to run `D17_2013_vegStr.csv` as a program.
 Finally,
-the `head` and `tail` combination selects lines 81-100 from whatever file is being processed.
+the `head` and `tail` combination selects lines 16-20 from whatever file is being processed.
+
+If we want easier readable output, we can do
+
+~~~ {.bash}
+for filename in *.csv
+
+do 
+    echo
+    echo "#FILE#: $filename"    
+    head -15 $filename | tail -5
+done
+~~~
+
+Dan you explain what these commands do?
 
 > ## Spaces in Names {.callout}
 > 
@@ -171,24 +180,24 @@ the `head` and `tail` combination selects lines 81-100 from whatever file is bei
 > Suppose our data files are named:
 > 
 > ~~~
-> basilisk.dat
-> red dragon.dat
-> unicorn.dat
+> D17_2013_vegStr.csv  
+> D17_2013_vegStr extraInfo.csv
+> D17_2013_vegStr_metadata_desc.csv
 > ~~~
 > 
 > If we try to process them using:
 > 
 > ~~~
-> for filename in *.dat
+> for filename in *.csv
 > do
->     head -100 $filename | tail -20
+>     head -20 $filename | tail -5
 > done
 > ~~~
 > 
-> then the shell will expand `*.dat` to create:
+> then the shell will expand `*.csv` to create:
 > 
 > ~~~
-> basilisk.dat red dragon.dat unicorn.dat
+> D17_2013_vegStr.csv  extraInfo.csv  D17_2013_vegStr_metadata_desc.csv
 > ~~~
 > 
 > With older versions of Bash,
@@ -196,15 +205,14 @@ the `head` and `tail` combination selects lines 81-100 from whatever file is bei
 > `filename` will then be assigned the following values in turn:
 > 
 > ~~~
-> basilisk.dat
-> red
-> dragon.dat
-> unicorn.dat
+> D17_2013_vegStr.csv
+> extraInfo.csv
+> D17_2013_vegStr_metadata_desc.csv
 > ~~~
 >
-> That's a problem: `head` can't read files called `red` and `dragon.dat`
-> because they don't exist,
-> and won't be asked to read the file `red dragon.dat`.
+> That's a problem: `head` can't read a file called `extraInfo.csv`
+> because it doesn't exist,
+> and won't be asked to read the file `D17_2013_vegStr extraInfo.csv`.
 > 
 > We can make our script a little bit more robust
 > by **quoting** our use of the variable:
@@ -212,7 +220,7 @@ the `head` and `tail` combination selects lines 81-100 from whatever file is bei
 > ~~~
 > for filename in *.dat
 > do
->     head -100 "$filename" | tail -20
+>     head -20 "$filename" | tail -5
 > done
 > ~~~
 >
@@ -222,7 +230,7 @@ Going back to our original file copying problem,
 we can solve it using this loop:
 
 ~~~ {.bash}
-for filename in *.dat
+for filename in *.csv
 do
     cp $filename original-$filename
 done
@@ -230,17 +238,17 @@ done
 
 This loop runs the `cp` command once for each filename.
 The first time,
-when `$filename` expands to `basilisk.dat`,
+when `$filename` expands to `D17_2013_vegStr.csv`,
 the shell executes:
 
 ~~~ {.bash}
-cp basilisk.dat original-basilisk.dat
+cp D17_2013_vegStr.csv original-D17_2013_vegStr.csv
 ~~~
 
 The second time, the command is:
 
 ~~~ {.bash}
-cp unicorn.dat original-unicorn.dat
+cp D17_2013_vegStr_metadata_desc.csv original-D17_2013_vegStr_metadata_desc.csv
 ~~~
 
 > ## Measure Twice, Run Once {.callout}
@@ -251,7 +259,7 @@ cp unicorn.dat original-unicorn.dat
 > For example, we could write our file copying loop like this:
 > 
 > ~~~
-> for filename in *.dat
+> for filename in *.csv
 > do
 >     echo cp $filename original-$filename
 > done
@@ -260,8 +268,8 @@ cp unicorn.dat original-unicorn.dat
 > Instead of running `cp`, this loop runs `echo`, which prints out:
 > 
 > ~~~
-> cp basilisk.dat original-basilisk.dat
-> cp unicorn.dat original-unicorn.dat
+> cp D17_2013_vegStr.csv original-D17_2013_vegStr.csv
+> cp D17_2013_vegStr_metadata_desc.csv original-D17_2013_vegStr_metadata_desc.csv
 > ~~~
 > 
 > *without* actually running those commands. We can then use up-arrow to
@@ -271,6 +279,7 @@ cp unicorn.dat original-unicorn.dat
 > you're still learning how loops work.
 
 ## Nelle's Pipeline: Processing Files
+## FIXME
 
 Nelle is now ready to process her data files.
 Since she's still learning how to use the shell,

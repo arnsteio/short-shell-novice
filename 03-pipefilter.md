@@ -15,49 +15,48 @@ minutes: 15
 Now that we know a few basic commands,
 we can finally look at the shell's most powerful feature:
 the ease with which it lets us combine existing programs in new ways.
-We'll start with a directory called `molecules`
-that contains six files describing some simple organic molecules.
-The `.pdb` extension indicates that these files are in Protein Data Bank format,
-a simple text format that specifies the type and position of each atom in the molecule.
+We'll start with the directory called `InSitu_Data`
+that contains four files describing some vegetation measurements.
+The `.cvs` extension indicates that these files are in Comma Separated Values format,
+which is used to store tabular data (numbers and text) in plain text. Each record consists 
+of one or more fields, separated by commas. The use of the comma as a field separator is the 
+source of the name for this file format.
 
 ~~~ {.bash}
-$ ls molecules
+$ ls InSitu_Data
 ~~~
 ~~~ {.output}
-cubane.pdb    ethane.pdb    methane.pdb
-octane.pdb    pentane.pdb   propane.pdb
+D17_2013_vegStr.csv  D17_2013_vegStr_metadata_desc.csv  lidarExtractedValues.csv  SJERPlotCentroids.csv
 ~~~
 
-Let's go into that directory with `cd` and run the command `wc *.pdb`.
+Let's go into that directory with `cd` and run the command `wc *.csv`.
 `wc` is the "word count" command:
 it counts the number of lines, words, and characters in files.
 The `*` in `*.pdb` matches zero or more characters,
 so the shell turns `*.pdb` into a complete list of `.pdb` files:
 
 ~~~ {.bash}
-$ cd molecules
-$ wc *.pdb
+$ cd InSitu_Data
+$ wc *.csv
 ~~~
 ~~~ {.output}
-  20  156 1158 cubane.pdb
-  12   84  622 ethane.pdb
-   9   57  422 methane.pdb
-  30  246 1828 octane.pdb
-  21  165 1226 pentane.pdb
-  15  111  825 propane.pdb
- 107  819 6081 total
+  363  2093 54690 D17_2013_vegStr.csv
+    0   551  5884 D17_2013_vegStr_metadata_desc.csv
+   18    19  1769 lidarExtractedValues.csv
+   19    19   772 SJERPlotCentroids.csv
+  400  2682 63115 total
 ~~~
 
 > ## Wildcards {.callout}
 > 
 > `*` is a **wildcard**. It matches zero or more
-> characters, so `*.pdb` matches `ethane.pdb`, `propane.pdb`, and every
-> file that ends with '.pdb'. On the other hand, `p*.pdb` only matches 
-> `pentane.pdb` and `propane.pdb`, because the 'p' at the front only 
-> matches filenames that begin with the letter 'p'.
+> characters, so `*.csv` matches `D17_2013_vegStr.csv`, `lidarExtractedValues.csv`, and every
+> file that ends with '.csv'. On the other hand, `D*.csv` only matches 
+> `D17_2013_vegStr.csv` and `D17_2013_vegStr_metadata_desc.csv`, because the 'D' at the front only 
+> matches filenames that begin with the letter 'D'.
 > 
 > `?` is also a wildcard, but it only matches a single character. This
-> means that `p?.pdb` matches `pi.pdb` or `p5.pdb`, but not `propane.pdb`.
+> means that `D17_2013_veg???.csv` matches `D17_2013_vegStr.csv`, but not `D17_2013_vegStr_metadata_desc.csv`.
 > We can use any number of wildcards at a time: for example, `p*.p?*`
 > matches anything that starts with a 'p' and ends with '.', 'p', and at
 > least one more character (since the '?' has to match one character, and
@@ -71,8 +70,8 @@ $ wc *.pdb
 > list of matching filenames *before* running the command that was
 > asked for. As an exception, if a wildcard expression does not match
 > any file, Bash will pass the expression as a parameter to the command
-> as it is. For example typing `ls *.pdf` in the molecules directory
-> (which contains only files with names ending with `.pdb`) results in
+> as it is. For example typing `ls *.pdf` in the InSitu_Data directory
+> (which contains only files with names ending with `.csv`) results in
 > an error message that there is no file called `*.pdf`.
 > However, generally commands like `wc` and `ls` see the lists of
 > file names matching these expressions, but not the wildcards
@@ -83,16 +82,14 @@ If we run `wc -l` instead of just `wc`,
 the output shows only the number of lines per file:
 
 ~~~ {.bash}
-$ wc -l *.pdb
+$ wc -l *.csv
 ~~~
 ~~~ {.output}
-  20  cubane.pdb
-  12  ethane.pdb
-   9  methane.pdb
-  30  octane.pdb
-  21  pentane.pdb
-  15  propane.pdb
- 107  total
+  363 D17_2013_vegStr.csv
+    0 D17_2013_vegStr_metadata_desc.csv
+   18 lidarExtractedValues.csv
+   19 SJERPlotCentroids.csv
+  400 total
 ~~~
 
 We can also use `-w` to get only the number of words,
@@ -104,7 +101,7 @@ but what if there were 6000?
 Our first step toward a solution is to run the command:
 
 ~~~ {.bash}
-$ wc -l *.pdb > lengths.txt
+$ wc -l *.csv > lengths.txt
 ~~~
 
 The greater than symbol, `>`, tells the shell to **redirect** the command's output
@@ -133,13 +130,11 @@ so `cat` just shows us what it contains:
 $ cat lengths.txt
 ~~~
 ~~~ {.output}
-  20  cubane.pdb
-  12  ethane.pdb
-   9  methane.pdb
-  30  octane.pdb
-  21  pentane.pdb
-  15  propane.pdb
- 107  total
+  363 D17_2013_vegStr.csv
+    0 D17_2013_vegStr_metadata_desc.csv
+   18 lidarExtractedValues.csv
+   19 SJERPlotCentroids.csv
+  400 total
 ~~~
 
 Now let's use the `sort` command to sort its contents.
@@ -152,13 +147,11 @@ instead, it sends the sorted result to the screen:
 $ sort -n lengths.txt
 ~~~
 ~~~ {.output}
-  9  methane.pdb
- 12  ethane.pdb
- 15  propane.pdb
- 20  cubane.pdb
- 21  pentane.pdb
- 30  octane.pdb
-107  total
+    0 D17_2013_vegStr_metadata_desc.csv
+   18 lidarExtractedValues.csv
+   19 SJERPlotCentroids.csv
+  363 D17_2013_vegStr.csv
+  400 total
 ~~~
 
 We can put the sorted list of lines in another temporary file called `sorted-lengths.txt`
@@ -172,7 +165,7 @@ $ sort -n lengths.txt > sorted-lengths.txt
 $ head -1 sorted-lengths.txt
 ~~~
 ~~~ {.output}
-  9  methane.pdb
+0 D17_2013_vegStr_metadata_desc.csv
 ~~~
 
 Using the parameter `-1` with `head` tells it that
@@ -192,7 +185,7 @@ We can make it easier to understand by running `sort` and `head` together:
 $ sort -n lengths.txt | head -1
 ~~~
 ~~~ {.output}
-  9  methane.pdb
+    0 D17_2013_vegStr_metadata_desc.csv
 ~~~
 
 The vertical bar between the two commands is called a **pipe**.
@@ -208,10 +201,10 @@ We can use another pipe to send the output of `wc` directly to `sort`,
 which then sends its output to `head`:
 
 ~~~ {.bash}
-$ wc -l *.pdb | sort -n | head -1
+$ wc -l *.csv | sort -n | head -1
 ~~~
 ~~~ {.output}
-  9  methane.pdb
+  0 D17_2013_vegStr_metadata_desc.csv
 ~~~
 
 This is exactly like a mathematician nesting functions like *log(3x)*
@@ -237,21 +230,21 @@ it creates a new process
 and temporarily sends whatever we type on our keyboard to that process's standard input,
 and whatever the process sends to standard output to the screen.
 
-Here's what happens when we run `wc -l *.pdb > lengths.txt`.
+Here's what happens when we run `wc -l *.csv > lengths.txt`.
 The shell starts by telling the computer to create a new process to run the `wc` program.
 Since we've provided some filenames as parameters,
 `wc` reads from them instead of from standard input.
 And since we've used `>` to redirect output to a file,
 the shell connects the process's standard output to that file.
 
-If we run `wc -l *.pdb | sort -n` instead,
+If we run `wc -l *.csv | sort -n` instead,
 the shell creates two processes
 (one for each process in the pipe)
 so that `wc` and `sort` run simultaneously.
 The standard output of `wc` is fed directly to the standard input of `sort`;
 since there's no redirection with `>`,
 `sort`'s output goes to the screen.
-And if we run `wc -l *.pdb | sort -n | head -1`,
+And if we run `wc -l *.csv | sort -n | head -1`,
 we get three processes with data flowing from the files,
 through `wc` to `sort`,
 and from `sort` through `head` to the screen.
@@ -290,6 +283,7 @@ so that you and other people can put those programs into pipes to multiply their
 > standard input.
 
 ## Nelle's Pipeline: Checking Files
+## FIXME
 
 Nelle has run her samples through the assay machines
 and created 1520 files in the `north-pacific-gyre/2012-07-03` directory described earlier.
