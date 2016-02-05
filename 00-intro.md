@@ -76,10 +76,10 @@ In addition, the command line is often the easiest way to interact with remote m
 Familiarity with the shell is near essential to run a variety of specialised tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching,
 being able to interact with them is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges.
 
-## FIXME: We need a new usecase, this is more advanvced than we'll do. Or just drop any kind of usecase here at all
 ## Nelle's field work data set: Starting Point
 
-Nele Nemo has been given some field data gathered in California, USA. The data is of various types: 
+Nelle Nemo has been given some field data gathered in California, USA. The data is of various types: 
+
 - Digital Surface Model data (raster)
 - Digital Terrain Model data (raster)
 - Various foliage measurements (comma separated textfiles)
