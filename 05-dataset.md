@@ -42,41 +42,35 @@ $ wget -c http://neondataskills.org/data/rasterLayers_tif.zip
 
 This will continue the download from where it was interrupted.  `curl` has a similar functionality with the "-C" option.
 
-To find out what other options `wget` accepts, we can type `man wget`. `man` is the Unix "manual" command: it prints a description 
+To find out what other options a command like `curl` accepts, we can type `man curl`. `man` is the Unix "manual" command: it prints a description 
 of a command and its options, and (if you're lucky) provides a few examples of how to use it.
 
 To navigate through the `man` pages, you may use the up and down arrow keys to move line-by-line, or try the "b" and spacebar keys to skip up 
-and down by full page. Quit the `man` pages by typing "q".
+and down by full page. To search, type "/" followed by some text and "Enter", and "n" to search again.  Quit the `man` pages by typing "q".
 
 ~~~ {.bash}
-$ man wget
+$ man curl
 ~~~
 ~~~ {.output}
-WGET(1)                                                       GNU Wget                                                      WGET(1)
+curl(1)                           Curl Manual                          curl(1)
 
 NAME
-       Wget - The non-interactive network downloader.
+       curl - transfer a URL
 
 SYNOPSIS
-       wget [option]... [URL]...
+       curl [options] [URL...]
 
 DESCRIPTION
-       GNU Wget is a free utility for non-interactive download of files from the Web.  It supports HTTP, HTTPS, and FTP protocols, as well as
-       retrieval through HTTP proxies.
+       curl  is  a tool to transfer data from or to a server, using one of the
+       supported protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS,  IMAP,
+       IMAPS,  LDAP,  LDAPS,  POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS,
+       TELNET and TFTP).  The command is designed to work without user  inter‐
+       action.
 
-       Wget is non-interactive, meaning that it can work in the background, while the user is not logged on.  This allows you to start a 
-       retrieval and disconnect from the system, letting Wget finish the work.  By contrast, most of the Web browsers require constant user's 
-       presence, which can be a great hindrance when transferring a lot of data.
-       ...        ...        ...
-
-OPTIONS
-   Option Syntax
-       Since Wget uses GNU getopt to process command-line arguments, every option has a long form along with the short one.  Long options are 
-       more convenient to remember, but take time to type.  You may freely mix different option styles, or specify options after the 
-       command-line arguments.  Thus you may write:
-
-               wget -r --tries=10 http://fly.srk.fer.hr/ -o log
-       ...        ...        ...
+       curl offers a busload of useful tricks like proxy support, user authen‐
+       tication, FTP upload, HTTP post, SSL connections, cookies, file  trans‐
+       fer  resume,  Metalink,  and more. As you will see below, the number of
+       features will make your head spin!
 
 ~~~
 
