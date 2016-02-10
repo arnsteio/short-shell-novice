@@ -271,7 +271,7 @@ we have a completely accurate record of how we created that figure.
 
 > ## Unnumbering {.callout}
 >
-> Nelle could also use `colrm` (short for "column removal") to remove the
+> Jessica could also use `colrm` (short for "column removal") to remove the
 > serial numbers on her previous commands.
 > Its parameters are the range of characters to strip from its input:
 >
@@ -299,9 +299,9 @@ what they discover about their data and their workflow with one call to `history
 and a bit of editing to clean up the output
 and save it as a shell script.
 
-## Nelle's Pipeline: Creating a Script
+## Jessica's Pipeline: Creating a Script
 
-An off-hand comment from her supervisor has made Nelle realize that
+An off-hand comment from her supervisor has made Jessica realize that
 she should have provided a couple of extra parameters to `goostats` when she processed her files.
 This might have been a disaster if she had done all the analysis by hand,
 but thanks to for loops,
@@ -337,7 +337,7 @@ $ bash do-stats.sh *[AB].txt | wc -l
 so that the output is just the number of files processed
 rather than the names of the files that were processed.
 
-One thing to note about Nelle's script is that
+One thing to note about Jessica's script is that
 it lets the person running it decide what files to process.
 She could have written it as:
 

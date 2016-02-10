@@ -234,7 +234,7 @@ to show how the simplest ones work, we'll use the directory tree shown below.
 
 ![File Tree for Find Example](fig/find-file-tree.svg)
 
-Nelle's `writing` directory contains one file called `haiku.txt` and four subdirectories:
+Jessica's `writing` directory contains one file called `haiku.txt` and four subdirectories:
 `thesis` (which is sadly empty),
 `data` (which contains two files `one.txt` and `two.txt`),
 a `tools` directory that contains the programs `format` and `stats`,
