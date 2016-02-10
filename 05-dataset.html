@@ -50,34 +50,28 @@
 <p>Both <code>curl</code> and <code>wget</code> has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the “-c” option with wget:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> -c http://neondataskills.org/data/rasterLayers_tif.zip</code></pre>
 <p>This will continue the download from where it was interrupted. <code>curl</code> has a similar functionality with the “-C” option.</p>
-<p>To find out what other options <code>wget</code> accepts, we can type <code>man wget</code>. <code>man</code> is the Unix “manual” command: it prints a description of a command and its options, and (if you’re lucky) provides a few examples of how to use it.</p>
-<p>To navigate through the <code>man</code> pages, you may use the up and down arrow keys to move line-by-line, or try the “b” and spacebar keys to skip up and down by full page. Quit the <code>man</code> pages by typing “q”.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> wget</code></pre>
-<pre class="output"><code>WGET(1)                                                       GNU Wget                                                      WGET(1)
+<p>To find out what other options a command like <code>curl</code> accepts, we can type <code>man curl</code>. <code>man</code> is the Unix “manual” command: it prints a description of a command and its options, and (if you’re lucky) provides a few examples of how to use it.</p>
+<p>To navigate through the <code>man</code> pages, you may use the up and down arrow keys to move line-by-line, or try the “b” and spacebar keys to skip up and down by full page. To search, type “/” followed by some text and “Enter”, and “n” to search again. Quit the <code>man</code> pages by typing “q”.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> curl</code></pre>
+<pre class="output"><code>curl(1)                           Curl Manual                          curl(1)
 
 NAME
-       Wget - The non-interactive network downloader.
+       curl - transfer a URL
 
 SYNOPSIS
-       wget [option]... [URL]...
+       curl [options] [URL...]
 
 DESCRIPTION
-       GNU Wget is a free utility for non-interactive download of files from the Web.  It supports HTTP, HTTPS, and FTP protocols, as well as
-       retrieval through HTTP proxies.
+       curl  is  a tool to transfer data from or to a server, using one of the
+       supported protocols (DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS,  IMAP,
+       IMAPS,  LDAP,  LDAPS,  POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS,
+       TELNET and TFTP).  The command is designed to work without user  inter‐
+       action.
 
-       Wget is non-interactive, meaning that it can work in the background, while the user is not logged on.  This allows you to start a 
-       retrieval and disconnect from the system, letting Wget finish the work.  By contrast, most of the Web browsers require constant user&#39;s 
-       presence, which can be a great hindrance when transferring a lot of data.
-       ...        ...        ...
-
-OPTIONS
-   Option Syntax
-       Since Wget uses GNU getopt to process command-line arguments, every option has a long form along with the short one.  Long options are 
-       more convenient to remember, but take time to type.  You may freely mix different option styles, or specify options after the 
-       command-line arguments.  Thus you may write:
-
-               wget -r --tries=10 http://fly.srk.fer.hr/ -o log
-       ...        ...        ...
+       curl offers a busload of useful tricks like proxy support, user authen‐
+       tication, FTP upload, HTTP post, SSL connections, cookies, file  trans‐
+       fer  resume,  Metalink,  and more. As you will see below, the number of
+       features will make your head spin!
 </code></pre>
 <h2 id="getting-data-from-a-usb-stick">Getting data from a USB stick</h2>
 <p>If the network is slow, you can copy the data set in from a USB stick. We went over <strong>cp</strong> in an earlier lesson on “creating things”:</p>
