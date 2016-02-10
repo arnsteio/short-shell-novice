@@ -160,9 +160,9 @@ cp D17_2013_vegStr_metadata_desc.csv original-D17_2013_vegStr_metadata_desc.csv<
 <p><em>without</em> actually running those commands. We can then use up-arrow to redisplay the loop, back-arrow to get to the word <code>echo</code>, delete it, and then press “enter” to run the loop with the actual <code>cp</code> commands. This isn’t foolproof, but it’s a handy way to see what’s going to happen when you’re still learning how loops work.</p>
 </div>
 </aside>
-<h2 id="nelles-pipeline-processing-files">Nelle’s Pipeline: Processing Files</h2>
+<h2 id="jessicas-pipeline-processing-files">Jessica’s Pipeline: Processing Files</h2>
 <h2 id="fixme">FIXME</h2>
-<p>Nelle is now ready to process her data files. Since she’s still learning how to use the shell, she decides to build up the required commands in stages. Her first step is to make sure that she can select the right files — remember, these are ones whose names end in ‘A’ or ‘B’, rather than ‘Z’. Starting from her home directory, Nelle types:</p>
+<p>Jessica is now ready to process her data files. Since she’s still learning how to use the shell, she decides to build up the required commands in stages. Her first step is to make sure that she can select the right files — remember, these are ones whose names end in ‘A’ or ‘B’, rather than ‘Z’. Starting from her home directory, Jessica types:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> north-pacific-gyre/2012-07-03
 $ <span class="kw">for</span> <span class="kw">datafile</span> in *[AB].txt
 <span class="kw">&gt;</span> <span class="kw">do</span>
@@ -186,11 +186,11 @@ NENE01736A.txt stats-NENE01736A.txt
 NENE02043A.txt stats-NENE02043A.txt
 NENE02043B.txt stats-NENE02043B.txt</code></pre>
 <p>She hasn’t actually run <code>goostats</code> yet, but now she’s sure she can select the right files and generate the right output filenames.</p>
-<p>Typing in commands over and over again is becoming tedious, though, and Nelle is worried about making mistakes, so instead of re-entering her loop, she presses the up arrow. In response, the shell redisplays the whole loop on one line (using semi-colons to separate the pieces):</p>
+<p>Typing in commands over and over again is becoming tedious, though, and Jessica is worried about making mistakes, so instead of re-entering her loop, she presses the up arrow. In response, the shell redisplays the whole loop on one line (using semi-colons to separate the pieces):</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">for</span> <span class="kw">datafile</span> in *[AB].txt<span class="kw">;</span> <span class="kw">do</span> <span class="kw">echo</span> <span class="ot">$datafile</span> stats-<span class="ot">$datafile</span><span class="kw">;</span> <span class="kw">done</span></code></pre>
-<p>Using the left arrow key, Nelle backs up and changes the command <code>echo</code> to <code>goostats</code>:</p>
+<p>Using the left arrow key, Jessica backs up and changes the command <code>echo</code> to <code>goostats</code>:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">for</span> <span class="kw">datafile</span> in *[AB].txt<span class="kw">;</span> <span class="kw">do</span> <span class="kw">bash</span> goostats <span class="ot">$datafile</span> stats-<span class="ot">$datafile</span><span class="kw">;</span> <span class="kw">done</span></code></pre>
-<p>When she presses enter, the shell runs the modified command. However, nothing appears to happen — there is no output. After a moment, Nelle realizes that since her script doesn’t print anything to the screen any longer, she has no idea whether it is running, much less how quickly. She kills the job by typing Control-C, uses up-arrow to repeat the command, and edits it to read:</p>
+<p>When she presses enter, the shell runs the modified command. However, nothing appears to happen — there is no output. After a moment, Jessica realizes that since her script doesn’t print anything to the screen any longer, she has no idea whether it is running, much less how quickly. She kills the job by typing Control-C, uses up-arrow to repeat the command, and edits it to read:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">for</span> <span class="kw">datafile</span> in *[AB].txt<span class="kw">;</span> <span class="kw">do</span> <span class="kw">echo</span> <span class="ot">$datafile</span><span class="kw">;</span> <span class="kw">bash</span> goostats <span class="ot">$datafile</span> stats-<span class="ot">$datafile</span><span class="kw">;</span> <span class="kw">done</span></code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
@@ -211,7 +211,7 @@ NENE01736A.txt
 <h2><span class="glyphicon glyphicon-pushpin"></span>Those Who Know History Can Choose to Repeat It</h2>
 </div>
 <div class="panel-body">
-<p>Another way to repeat previous work is to use the <code>history</code> command to get a list of the last few hundred commands that have been executed, and then to use <code>!123</code> (where “123” is replaced by the command number) to repeat one of those commands. For example, if Nelle types this:</p>
+<p>Another way to repeat previous work is to use the <code>history</code> command to get a list of the last few hundred commands that have been executed, and then to use <code>!123</code> (where “123” is replaced by the command number) to repeat one of those commands. For example, if Jessica types this:</p>
 <pre><code>$ history | tail -5
   456  ls -l NENE0*.txt
   457  rm stats-NENE01729B.txt.txt

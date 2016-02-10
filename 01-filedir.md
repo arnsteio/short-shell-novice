@@ -51,7 +51,7 @@ it shows us who the shell thinks we are:
 $ whoami
 ~~~
 ~~~ {.output}
-nelle
+jessica
 ~~~
 
 More specifically, when we type `whoami` the shell:
@@ -64,14 +64,14 @@ More specifically, when we type `whoami` the shell:
 
 > ## Username Variation {.callout}
 >
-> In this lesson, we have used the username `nelle` (associated 
-> with our hypothetical scientist Nelle) in example input and output throughout.  
+> In this lesson, we have used the username `jessica` (associated 
+> with our hypothetical scientist Jessica) in example input and output throughout.  
 > However, when 
 > you type this lesson's commands on your computer,
 > you should see and use something different, 
 > namely, the username associated with the user account on your computer.  This 
 > username will be the output from `whoami`.  In 
-> what follows, `nelle` should always be replaced by that username.  
+> what follows, `jessica` should always be replaced by that username.  
 
 Next,
 let's find out where we are by running a command called `pwd`
@@ -83,22 +83,22 @@ i.e.,
 the directory that the computer assumes we want to run commands in
 unless we explicitly specify something else.
 Here,
-the computer's response is `/Users/nelle`,
-which is Nelle's **home directory**:
+the computer's response is `/Users/jessica`,
+which is Jessica's **home directory**:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle
+/Users/jessica
 ~~~
 
 > ## Home Directory Variation {.callout}
 >
 > The home directory path will look different on different operating systems.
-> On Linux it may look like `/home/nelle`,
-> and on Windows it will be similar to `C:\Documents and Settings\nelle` or 
-> `C:\Users\nelle`.  
+> On Linux it may look like `/home/jessica`,
+> and on Windows it will be similar to `C:\Documents and Settings\jessica` or 
+> `C:\Users\jessica`.  
 > (Note that it may look slightly different for different versions of Windows.)
 > In future examples, we've used Mac output as the default - Linux and Windows 
 > output may differ slightly, but should be generally similar.  
@@ -106,18 +106,18 @@ $ pwd
 To understand what a "home directory" is,
 let's have a look at how the file system as a whole is organized.  For the 
 sake of example, we'll be 
-illustrating the filesystem on our scientist Nelle's computer.  After this
+illustrating the filesystem on our scientist Jessica's computer.  After this
 illustration, you'll be learning commands to explore your own filesystem, 
 which will be constructed in a similar way, but not be exactly identical.  
 
-On Nelle's computer, the filesystem looks like this: 
+On Jessica's computer, the filesystem looks like this: 
 
 ![The File System](fig/filesystem.svg)
 
 At the top is the **root directory**
 that holds everything else.
 We refer to it using a slash character `/` on its own;
-this is the leading slash in `/Users/nelle`.
+this is the leading slash in `/Users/jessica`.
 
 Inside that directory are several other directories:
 `bin` (which is where some built-in programs are stored),
@@ -126,7 +126,7 @@ Inside that directory are several other directories:
 `tmp` (for temporary files that don't need to be stored long-term),
 and so on.  
 
-We know that our current working directory `/Users/nelle` is stored inside `/Users`
+We know that our current working directory `/Users/jessica` is stored inside `/Users`
 because `/Users` is the first part of its name.
 Similarly,
 we know that `/Users` is stored inside the root directory `/`
@@ -140,15 +140,15 @@ because its name begins with `/`.
 > it's just a separator.
 
 Underneath `/Users`,
-we find one directory for each user with an account on Nelle's machine, 
+we find one directory for each user with an account on Jessica's machine, 
 her colleagues the Mummy and Wolfman.  
 
 ![Home Directories](fig/home-directories.svg)
 
 The Mummy's files are stored in `/Users/imhotep`,
 Wolfman's in `/Users/larry`,
-and Nelle's in `/Users/nelle`.  Because Nelle is the user in our 
-examples here, this is why we get `/Users/nelle` as our home directory.  
+and Jessica's in `/Users/jessica`.  Because Jessica is the user in our 
+examples here, this is why we get `/Users/jessica` as our home directory.  
 Typically, when you open a new command prompt you will be in 
 your home directory to start.  
 
@@ -261,16 +261,16 @@ $ cd InSitu_Data
 These commands will move us from our home directory onto our Desktop, then into 
 the `InSitu_Data` directory.  `cd` doesn't print anything,
 but if we run `pwd` after it, we can see that we are now 
-in `/Users/nelle/Desktop/InSitu_Data`.
+in `/Users/jessica/Desktop/InSitu_Data`.
 If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/Desktop/InSitu_Data`,
+it lists the contents of `/Users/jessica/Desktop/InSitu_Data`,
 because that's where we now are:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/Desktop/InSitu_Data
+/Users/jessica/Desktop/InSitu_Data
 ~~~
 ~~~ {.bash}
 $ ls -F
@@ -308,13 +308,13 @@ $ cd ..
 or more succinctly,
 the **parent** of the current directory.
 Sure enough,
-if we run `pwd` after running `cd ..`, we're back in `/Users/nelle/Desktop/`:
+if we run `pwd` after running `cd ..`, we're back in `/Users/jessica/Desktop/`:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/Desktop/
+/Users/jessica/Desktop/
 ~~~
 
 The special directory `..` doesn't usually show up when we run `ls`.  If we want 
@@ -332,7 +332,7 @@ Desktop/            north-pacific-gyre/ writing/
 
 `-a` stands for "show all";
 it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle`, refers to the `/Users` directory)
+such as `..` (which, if we're in `/Users/jessica`, refers to the `/Users` directory)
 As you can see,
 it also displays another special directory that's just called `.`,
 which means "the current working directory".
@@ -353,8 +353,8 @@ but we'll see some uses for it soon.
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
-> if we are in `/Users/nelle/data`,
-> the command `ls ..` will give us a listing of `/Users/nelle`.
+> if we are in `/Users/jessica/data`,
+> the command `ls ..` will give us a listing of `/Users/jessica`.
 > When the meanings of the parts are the same no matter how they're combined,
 > programmers say they are **orthogonal**:
 > Orthogonal systems tend to be easier for people to learn
@@ -375,7 +375,7 @@ How can you check what happened?  `pwd` gives us the answer!
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle
+/Users/jessica
 ~~~
 
 It turns out that `cd` without an argument will return you to your home directory, 
@@ -415,10 +415,10 @@ to move to `data-shell`.
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/Desktop/InSitu_Data/
+/Users/jessica/Desktop/InSitu_Data/
 ~~~
 ~~~ {.bash}
-$ cd /Users/nelle/Desktop/
+$ cd /Users/jessica/Desktop/
 ~~~
 
 Run `pwd` and `ls -F` to ensure that we're in the directory we expect.  
@@ -426,10 +426,10 @@ Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
 > ## Two More Shortcuts {.callout}
 >
 > The shell interprets the character `~` (tilde) at the start of a path to
-> mean "the current user's home directory". For example, if Nelle's home
-> directory is `/Users/nelle`, then `~/data` is equivalent to
-> `/Users/nelle/data`. This only works if it is the first character in the
-> path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`. 
+> mean "the current user's home directory". For example, if Jessica's home
+> directory is `/Users/jessica`, then `~/data` is equivalent to
+> `/Users/jessica/data`. This only works if it is the first character in the
+> path: `here/there/~/elsewhere` is *not* `/Users/jessica/elsewhere`. 
 > 
 > Another shortcut is the `-` (dash) character.  `cd` will translate `-` into
 > *the previous directory I was in*, which is faster than having to remember, 
@@ -438,10 +438,10 @@ Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
 > that the former brings you *up*, while the later brings you *back*. 
 
 ##FIXME
-### Nelle's Pipeline: Organizing Files
+### Jessica's Pipeline: Organizing Files
 
 Knowing just this much about files and directories,
-Nelle is ready to organize the files that the protein assay machine will create.
+Jessica is ready to organize the files that the protein assay machine will create.
 First,
 she creates a directory called `north-pacific-gyre`
 (to remind herself where the data came from).
@@ -455,7 +455,7 @@ a directory called `revised-revised-results-3`.)
 
 > ## Output sorting {.callout}
 >
-> Nelle names her directories "year-month-day",
+> Jessica names her directories "year-month-day",
 > with leading zeroes for months and days,
 > because the shell displays file and directory names in alphabetical order.
 > If she used month names,
@@ -475,7 +475,7 @@ she will call her files `NENE01729A.txt`, `NENE01812A.txt`, and so on.
 All 1520 files will go into the same directory.
 
 If she is in her home directory,
-Nelle can see what files she has using the command:
+Jessica can see what files she has using the command:
 
 ~~~ {.bash}
 $ ls north-pacific-gyre/2012-07-03/

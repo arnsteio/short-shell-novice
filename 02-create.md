@@ -13,15 +13,15 @@ minutes: 15
 
 We now know how to explore files and directories,
 but how do we create them in the first place?
-Let's go back to Nelle's home directory,
-`/Users/nelle`,
+Let's go back to Jessica's home directory,
+`/Users/jessica`,
 and use `ls -F` to see what it contains:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle
+/Users/jessica
 ~~~
 ~~~ {.bash}
 $ ls -F
@@ -134,13 +134,13 @@ $ ls
 > file's disk space right away.
 
 Let's re-create that file
-and then move up one directory to `/Users/nelle` using `cd ..`:
+and then move up one directory to `/Users/jessica` using `cd ..`:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/thesis
+/Users/jessica/thesis
 ~~~
 ~~~ {.bash}
 $ nano draft.txt
@@ -213,7 +213,7 @@ rather than going into the `thesis` directory and running `nano` on `draft.txt` 
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle
+/Users/jessica
 ~~~
 ~~~ {.bash}
 $ mkdir thesis
@@ -319,7 +319,7 @@ but it does find the copy in `thesis` that we didn't delete.
 
 > ## What's In A Name? {.callout}
 >
-> You may have noticed that all of Nelle's files' names are "something dot
+> You may have noticed that all of Jessica's files' names are "something dot
 > something", and in this part of the lesson, we always used the extension 
 > `.txt`.  This is just a convention: we can call a file `mythesis` or
 > almost anything else we want. However, most people use two-part names

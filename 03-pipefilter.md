@@ -282,12 +282,12 @@ so that you and other people can put those programs into pipes to multiply their
 > have told the shell to send the contents of `ammonia.pdb` to `wc`'s
 > standard input.
 
-## Nelle's Pipeline: Checking Files
+## Jessica's Pipeline: Checking Files
 ## FIXME
 
-Nelle has run her samples through the assay machines
+Jessica has run her samples through the assay machines
 and created 1520 files in the `north-pacific-gyre/2012-07-03` directory described earlier.
-As a quick sanity check, starting from her home directory, Nelle types:
+As a quick sanity check, starting from her home directory, Jessica types:
 
 ~~~ {.bash}
 $ cd north-pacific-gyre/2012-07-03
