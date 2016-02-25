@@ -78,7 +78,7 @@ being able to interact with them is becoming a necessary skill. We can build on 
 
 ## Jessica's dissertation: Starting Point
 
-Jessica is putting together her dissertation proposal as a part of her PHD program in ecology at University of Boulder, CO. She is interested in exploring some of her field sites to understand how phenology of vegetation (greening in the spring summer and senescence in the winter, varies across multiple sites and through time. Her PhD advisor has given her some data for a few sites which have very different vegetation communities including Harvard Forest (Massachusetts) and San Joachin Experimental Range (California). The data include:
+Jessica is putting together her dissertation proposal as a part of her PHD program in ecology at University of Boulder, CO. She is interested in exploring some of her field sites to understand how phenology of vegetation (greening in the spring summer and senescence in the winter, varies across multiple sites and through time. Her PhD advisor has given her some data for a few sites which have very different vegetation communities including Harvard Forest (Massachusetts) and San Joaquin Experimental Range (California). The data include:
 
 1. Vegetation greenness (NDVI) derived from the Landsat Satellite (30 meter resolution) for both sites for 2 years derived from the landsat sensor in a raster format. 
 2. Some high resolution images of the sites. 
