@@ -40,7 +40,6 @@ These lessons will start you on a path towards using these resources effectively
 
 
 ## Topics
-<!--(FIXME: Add setup stuff here)-->
 1.  [Introducing the Shell](00-intro.html)
 2.  [Files and Directories](01-filedir.html)
 3.  [Creating Things](02-create.html)

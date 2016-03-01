@@ -201,25 +201,6 @@ Desktop/            north-pacific-gyre/ writing/</code></pre>
 <p>Another shortcut is the <code>-</code> (dash) character. <code>cd</code> will translate <code>-</code> into <em>the previous directory I was in</em>, which is faster than having to remember, then type, the full path. This is a <em>very</em> efficient way of moving back and forth between directories. The difference between <code>cd ..</code> and <code>cd -</code> is that the former brings you <em>up</em>, while the later brings you <em>back</em>.</p>
 </div>
 </aside>
-<h2 id="fixme">FIXME</h2>
-<h3 id="jessicas-pipeline-organizing-files">Jessica’s Pipeline: Organizing Files</h3>
-<p>Knowing just this much about files and directories, Jessica is ready to organize the files that the protein assay machine will create. First, she creates a directory called <code>north-pacific-gyre</code> (to remind herself where the data came from). Inside that, she creates a directory called <code>2012-07-03</code>, which is the date she started processing the samples. She used to use names like <code>conference-paper</code> and <code>revised-results</code>, but she found them hard to understand after a couple of years. (The final straw was when she found herself creating a directory called <code>revised-revised-results-3</code>.)</p>
-<aside class="callout panel panel-info">
-<div class="panel-heading">
-<h2><span class="glyphicon glyphicon-pushpin"></span>Output sorting</h2>
-</div>
-<div class="panel-body">
-<p>Jessica names her directories “year-month-day”, with leading zeroes for months and days, because the shell displays file and directory names in alphabetical order. If she used month names, December would come before July; if she didn’t use leading zeroes, November (‘11’) would come before July (‘7’). Similarly, putting the year first means that June 2012 will come before June 2013.</p>
-</div>
-</aside>
-<p>Each of her physical samples is labelled according to her lab’s convention with a unique ten-character ID, such as “NENE01729A”. This is what she used in her collection log to record the location, time, depth, and other characteristics of the sample, so she decides to use it as part of each data file’s name. Since the assay machine’s output is plain text, she will call her files <code>NENE01729A.txt</code>, <code>NENE01812A.txt</code>, and so on. All 1520 files will go into the same directory.</p>
-<p>If she is in her home directory, Jessica can see what files she has using the command:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> north-pacific-gyre/2012-07-03/</code></pre>
-<p>This is a lot to type, but she can let the shell do most of the work through what is called <strong>tab completion</strong>. If she types:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> nor</code></pre>
-<p>and then presses tab (the tab key on her keyboard), the shell automatically completes the directory name for her:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> north-pacific-gyre/</code></pre>
-<p>If she presses tab again, Bash will add <code>2012-07-03/</code> to the command, since it’s the only possible completion. Pressing tab again does nothing, since there are 19 possibilities; pressing tab twice brings up a list of all the files, and so on. This is called <strong>tab completion</strong>, and we will see it in many other tools as we go on.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pencil"></span>Many ways to do the same thing - absolute vs relative paths</h2>
