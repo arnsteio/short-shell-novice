@@ -44,12 +44,9 @@
 <p>The <strong>curl</strong> utility is widely available, and can be used on all the platforms we discuss in this course. The following example downloads the data set - a single file - from the internet and stores it in the current directory:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -# -O http://neondataskills.org/data/rasterLayers_tif.zip</code></pre>
 <p>The -O option sends the downloaded file to a local file (rather than to your terminal screen). The -# option creates a simple download bar - if you skip this you get some more complex download statistics.</p>
-<p>Alternately, the <strong>wget</strong> utility is a good option to download files from the internet. <code>wget</code> can handle complex download situations including large file downloads, recursive downloads, non-interactive downloads and multiple file downloads. To download the dataset:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> http://neondataskills.org/data/rasterLayers_tif.zip</code></pre>
-<p>While downloading, <code>wget</code> will also show a progress bar with some download stats.</p>
-<p>Both <code>curl</code> and <code>wget</code> has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the “-c” option with wget:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> -c http://neondataskills.org/data/rasterLayers_tif.zip</code></pre>
-<p>This will continue the download from where it was interrupted. <code>curl</code> has a similar functionality with the “-C” option.</p>
+<p><code>curl</code> has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the “-C” option:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -# -O -C - http://neondataskills.org/data/rasterLayers_tif.zip</code></pre>
+<p>This will continue the download from where it was interrupted.</p>
 <p>To find out what other options a command like <code>curl</code> accepts, we can type <code>man curl</code>. <code>man</code> is the Unix “manual” command: it prints a description of a command and its options, and (if you’re lucky) provides a few examples of how to use it.</p>
 <p>To navigate through the <code>man</code> pages, you may use the up and down arrow keys to move line-by-line, or try the “b” and spacebar keys to skip up and down by full page. To search, type “/” followed by some text and “Enter”, and “n” to search again. Quit the <code>man</code> pages by typing “q”.</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> curl</code></pre>

@@ -23,24 +23,14 @@ $ curl -# -O http://neondataskills.org/data/rasterLayers_tif.zip
 The -O option sends the downloaded file to a local file (rather than to your terminal screen). The -# option 
 creates a simple download bar - if you skip this you get some more complex download statistics.
 
-Alternately, the **wget** utility is a good option to download files from the internet. `wget`  can handle complex download situations including 
-large file downloads, recursive downloads, non-interactive downloads and multiple file downloads. 
-To download the dataset:
+`curl` has lots of useful options. E.g., if you need to restart the above download if you were 
+interrupted in the middle, you can use the "-C" option:
 
 ~~~ {.bash}
-$ wget http://neondataskills.org/data/rasterLayers_tif.zip
+$ curl -# -O -C - http://neondataskills.org/data/rasterLayers_tif.zip
 ~~~
 
-While downloading, `wget` will also show a progress bar with some download stats.
-
-Both `curl` and `wget` has lots of useful options. E.g., if you need to restart the above download if you were 
-interrupted in the middle, you can use the "-c" option with wget:
-
-~~~ {.bash}
-$ wget -c http://neondataskills.org/data/rasterLayers_tif.zip
-~~~
-
-This will continue the download from where it was interrupted.  `curl` has a similar functionality with the "-C" option.
+This will continue the download from where it was interrupted.
 
 To find out what other options a command like `curl` accepts, we can type `man curl`. `man` is the Unix "manual" command: it prints a description 
 of a command and its options, and (if you're lucky) provides a few examples of how to use it.
