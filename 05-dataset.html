@@ -42,10 +42,10 @@
 <p>To follow the rest of this workshop you need to get a hold of the data set. We’ll use the command line for that. You can either get the data from the internet, or via a USB stick the teachers will provide.</p>
 <h2 id="getting-data-from-the-internet">Getting data from the Internet</h2>
 <p>The <strong>curl</strong> utility is widely available, and can be used on all the platforms we discuss in this course. The following example downloads the data set - a single file - from the internet and stores it in the current directory:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -# -O http://neondataskills.org/data/rasterLayers_tif.zip</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -# -O http://neondataskills.org/data/NEON-DS-Landsat-NDVI.zip</code></pre>
 <p>The -O option sends the downloaded file to a local file (rather than to your terminal screen). The -# option creates a simple download bar - if you skip this you get some more complex download statistics.</p>
 <p><code>curl</code> has lots of useful options. E.g., if you need to restart the above download if you were interrupted in the middle, you can use the “-C” option:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -# -O -C - http://neondataskills.org/data/rasterLayers_tif.zip</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> -# -O -C - http://neondataskills.org/data/NEON-DS-Landsat-NDVI.zip</code></pre>
 <p>This will continue the download from where it was interrupted.</p>
 <p>To find out what other options a command like <code>curl</code> accepts, we can type <code>man curl</code>. <code>man</code> is the Unix “manual” command: it prints a description of a command and its options, and (if you’re lucky) provides a few examples of how to use it.</p>
 <p>To navigate through the <code>man</code> pages, you may use the up and down arrow keys to move line-by-line, or try the “b” and spacebar keys to skip up and down by full page. To search, type “/” followed by some text and “Enter”, and “n” to search again. Quit the <code>man</code> pages by typing “q”.</p>
@@ -79,7 +79,7 @@ DESCRIPTION
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">df</span> <span class="kw">|</span> <span class="kw">tail</span></code></pre>
 <p>The last line will typically tell you where the USB media has been mounted.</p>
 <p>With that info, can you build up a command line to copy the data to your machine? It should look something like</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> /media/<span class="kw">&lt;</span>username<span class="kw">&gt;</span>/<span class="kw">&lt;</span>data_path<span class="kw">&gt;</span>/rasterLayers_tif.zip .</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> /media/<span class="kw">&lt;</span>username<span class="kw">&gt;</span>/<span class="kw">&lt;</span>data_path<span class="kw">&gt;</span>/NEON-DS-Landsat-NDVI.zip .</code></pre>
 <p>If you struggle,</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> cp</code></pre>
 <p>could help.</p>

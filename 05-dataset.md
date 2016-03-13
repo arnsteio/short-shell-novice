@@ -18,7 +18,7 @@ The following example downloads the data set - a single file - from the internet
 current directory:
 
 ~~~ {.bash}
-$ curl -# -O http://neondataskills.org/data/rasterLayers_tif.zip
+$ curl -# -O http://neondataskills.org/data/NEON-DS-Landsat-NDVI.zip
 ~~~
 The -O option sends the downloaded file to a local file (rather than to your terminal screen). The -# option 
 creates a simple download bar - if you skip this you get some more complex download statistics.
@@ -27,7 +27,7 @@ creates a simple download bar - if you skip this you get some more complex downl
 interrupted in the middle, you can use the "-C" option:
 
 ~~~ {.bash}
-$ curl -# -O -C - http://neondataskills.org/data/rasterLayers_tif.zip
+$ curl -# -O -C - http://neondataskills.org/data/NEON-DS-Landsat-NDVI.zip
 ~~~
 
 This will continue the download from where it was interrupted.
@@ -81,7 +81,7 @@ The last line will typically tell you where the USB media has been mounted.
 With that info, can you build up a command line to copy the data to your machine? It should look something like
 
 ~~~ {.bash}
-$ cp /media/<username>/<data_path>/rasterLayers_tif.zip .
+$ cp /media/<username>/<data_path>/NEON-DS-Landsat-NDVI.zip .
 ~~~
 
 If you struggle, 

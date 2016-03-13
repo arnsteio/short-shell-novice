@@ -201,22 +201,22 @@ which doesn't exist.
 > so we will too.
 
 We can also use `ls` to see the contents of a different directory.  Let's take a 
-look at our `Desktop` directory by running `ls -F Desktop`,
+look at our `Documents` directory by running `ls -F Documents`,
 i.e.,
-the command `ls` with the **arguments** `-F` and `Desktop`.
+the command `ls` with the **arguments** `-F` and `Documents`.
 The second argument --- the one *without* a leading dash --- tells `ls` that
 we want a listing of something other than our current working directory:
 
 ~~~ {.bash}
-$ ls -F Desktop
+$ ls -F Documents
 ~~~
 ~~~ {.output}
-CHM_InSitu_Data.zip  DigitalSurfaceModel/  DigitalTerrainModel/  InSitu_Data/  PlotCentroid_Shapefile/
+data/
 ~~~
 
 Your output should be a list of all the files and sub-directories on your 
-Desktop, including the directories you downloaded at 
-the start of the lesson.  Take a look at your Desktop to confirm that 
+Documents, including the directory data you created at 
+the start of the lesson.  Take a look at your Documents to confirm that 
 your output is accurate.  
 
 As you may now see, using a bash shell is strongly dependent on the idea that 
@@ -226,17 +226,17 @@ it's possible to put hundreds of files in our home directory,
 just as it's possible to pile hundreds of printed papers on our desk,
 but it's a self-defeating strategy.
 
-Now that we know the directories are located on our Desktop, we 
+Now that we know the directories are located on our Documents, we 
 can do two things.  
 
 First, we can look at its contents, using the same strategy as before, passing 
 a directory name to `ls`: 
 
 ~~~ {.bash}
-$ ls -F Desktop/InSitu_Data/
+$ ls -F Documents/data/
 ~~~
 ~~~ {.output}
-D17_2013_vegStr.csv  D17_2013_vegStr_metadata_desc.csv  lidarExtractedValues.csv  SJERPlotCentroids.csv
+Global/  NEON-DS-Airborne-Remote-Sensing/  NEON-DS-Landsat-NDVI/  NEON-DS-Site-Layout-Files/
 ~~~
 
 Second, we can actually change our location to a different directory, so 
@@ -250,43 +250,44 @@ which is a bit misleading:
 the command doesn't change the directory,
 it changes the shell's idea of what directory we are in.
 
-Let's say we want to move to the `InSitu_Data` directory we saw above.  We can 
+Let's say we want to move to the `NEON-DS-Site-Layout-Files` directory we saw above.  We can 
 use the following series of commands to get there: 
 
 ~~~ {.bash}
-$ cd Desktop
-$ cd InSitu_Data
+$ cd Documents
+$ cd data
+$ cd NEON-DS-Site-Layout-Files
 ~~~
 
-These commands will move us from our home directory onto our Desktop, then into 
-the `InSitu_Data` directory.  `cd` doesn't print anything,
+These commands will move us from our home directory onto our Documents, then into 
+the `data` directory and finally into the `NEON-DS-Site-Layout-Files` directory.  `cd` doesn't print anything,
 but if we run `pwd` after it, we can see that we are now 
-in `/Users/jessica/Desktop/InSitu_Data`.
+in `/Users/jessica/Documents/data/NEON-DS-Site-Layout-Files`.
 If we run `ls` without arguments now,
-it lists the contents of `/Users/jessica/Desktop/InSitu_Data`,
+it lists the contents of `/Users/jessica/Documents/data/NEON-DS-Site-Layout-Files`,
 because that's where we now are:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/jessica/Desktop/InSitu_Data
+/Users/jessica/Documents/data/NEON-DS-Site-Layout-Files
 ~~~
 ~~~ {.bash}
 $ ls -F
 ~~~
 ~~~ {.output}
-D17_2013_vegStr.csv  D17_2013_vegStr_metadata_desc.csv  lidarExtractedValues.csv  SJERPlotCentroids.csv
+HARV/  NDVI_animation.gif  README.GTF  SJER/
 ~~~
 
 We now know how to go down the directory tree:
 how do we go up?  We might try the following: 
 
 ~~~{.bash}
-cd Desktop
+cd Documents
 ~~~
 ~~~{.error}
--bash: cd: Desktop: No such file or directory
+-bash: cd: Documents: No such file or directory
 ~~~
 
 But we get an error!  Why is this?  
@@ -299,7 +300,7 @@ with the simplest.
 There is a shortcut in the shell to move up one directory level
 that looks like this: 
 
-~~~ {.bash}
+~~~{.bash}
 $ cd ..
 ~~~
 
@@ -308,13 +309,28 @@ $ cd ..
 or more succinctly,
 the **parent** of the current directory.
 Sure enough,
-if we run `pwd` after running `cd ..`, we're back in `/Users/jessica/Desktop/`:
+if we run `pwd` after running `cd ..`, we're back in `/Users/jessica/Documents/data/`:
 
-~~~ {.bash}
+~~~{.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/jessica/Desktop/
+/Users/jessica/Documents/data
+~~~
+
+As for the `ls` command, we can pass several directories to the `cd` command
+
+~~~{.bash}
+$ cd ../..
+~~~
+
+We moved up two directories and we are now in `/Users/jessica":
+
+~~~{.bash}
+$ pwd
+~~~
+~~~{.output}
+/Users/jessica
 ~~~
 
 The special directory `..` doesn't usually show up when we run `ls`.  If we want 
@@ -324,10 +340,10 @@ to display it, we can give `ls` the `-a` flag:
 $ ls -F -a
 ~~~
 ~~~ {.output}
-./                  creatures/          notes.txt
-../                 data/               pizza.cfg
-.bash_profile       molecules/          solar.pdf
-Desktop/            north-pacific-gyre/ writing/
+./                  Desktop/          Movies/ 
+../                 Documents/        Music/
+.bash_profile       Downloads/        Pictures/
+Applications/       Library/          Public/
 ~~~
 
 `-a` stands for "show all";
@@ -353,7 +369,7 @@ but we'll see some uses for it soon.
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
-> if we are in `/Users/jessica/data`,
+> if we are in `/Users/jessica/Documents`,
 > the command `ls ..` will give us a listing of `/Users/jessica`.
 > When the meanings of the parts are the same no matter how they're combined,
 > programmers say they are **orthogonal**:
@@ -381,12 +397,12 @@ $ pwd
 It turns out that `cd` without an argument will return you to your home directory, 
 which is great if you've gotten lost in your own filesystem.  
 
-Let's try returning to the `InSitu_Data` directory from before.  Last time, we used 
+Let's try returning to the `NEON-DS-Site-Layout-Files` directory from before.  Last time, we used 
 three commands, but we can actually string together the list of directories 
-to move to `InSitu_Data/` in one step: 
+to move to `NEON-DS-Site-Layout-Files/` in one step: 
 
 ~~~ {.bash}
-$ cd Desktop/InSitu_Data/
+$ cd Documents/data/NEON-DS-Site-Layout-Files
 ~~~
 
 Check that we've moved to the right place by running `pwd` and `ls -F`.  
@@ -406,19 +422,19 @@ leading slash.  The leading `/` tells the computer to follow the path from
 the root of the file system, so it always refers to exactly one directory,
 no matter where we are when we run the command.
 
-This allows us to move to our data-shell directory from anywhere on 
+This allows us to move to our `NEON-DS-Site-Layout-Files` directory from anywhere on 
 the filesystem (including from inside `data`).  To find the absolute path 
 we're looking for, we can use `pwd` and then extract the piece we need 
-to move to `data-shell`.  
+to move to `NEON-DS-Site-Layout-Files`.  
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/jessica/Desktop/InSitu_Data/
+/Users/jessica/Documents/data/NEON-DS-Site-Layout-Files
 ~~~
 ~~~ {.bash}
-$ cd /Users/jessica/Desktop/
+$ cd /Users/jessica/Documents/
 ~~~
 
 Run `pwd` and `ls -F` to ensure that we're in the directory we expect.  
@@ -427,11 +443,11 @@ Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
 >
 > The shell interprets the character `~` (tilde) at the start of a path to
 > mean "the current user's home directory". For example, if Jessica's home
-> directory is `/Users/jessica`, then `~/data` is equivalent to
-> `/Users/jessica/data`. This only works if it is the first character in the
+> directory is `/Users/jessica`, then `~/Documents` is equivalent to
+> `/Users/jessica/Documents`. This only works if it is the first character in the
 > path: `here/there/~/elsewhere` is *not* `/Users/jessica/elsewhere`. 
 > 
-> Another shortcut is the `-` (dash) character.  `cd` will translate `-` into
+> Another shortcut is the `-` (dash) character.  `cd -` will translate `-` into
 > *the previous directory I was in*, which is faster than having to remember, 
 > then type, the full path.  This is a *very* efficient way of moving back 
 > and forth between directories. The difference between `cd ..` and `cd -` is 
@@ -485,5 +501,6 @@ what will `ls ../backup` display?
 
 > ## Exploring more `ls` arguments {.challenge}
 >
-> What does the command `ls` do when used with the `-s` and `-h`
-> arguments?
+> 
+> What does the command `ls` do when used with the `-s` and `-h` arguments?
+

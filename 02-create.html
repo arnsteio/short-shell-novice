@@ -45,17 +45,15 @@
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">pwd</span></code></pre>
 <pre class="output"><code>/Users/jessica</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -F</code></pre>
-<pre class="output"><code>creatures/  molecules/           pizza.cfg
-data/       north-pacific-gyre/  solar.pdf
-Desktop/    notes.txt            writing/</code></pre>
+<pre class="output"><code>Applications/ Documents/    Library/      Music/        Public/
+Desktop/      Downloads/    Movies/       Pictures/</code></pre>
+<p>Change directory and go to Documents:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> Documents</code></pre>
 <p>Let’s create a new directory called <code>thesis</code> using the command <code>mkdir thesis</code> (which has no output):</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> thesis</code></pre>
 <p>As you might (or might not) guess from its name, <code>mkdir</code> means “make directory”. Since <code>thesis</code> is a relative path (i.e., doesn’t have a leading slash), the new directory is created in the current working directory:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -F</code></pre>
-<pre class="output"><code>creatures/  north-pacific-gyre/  thesis/
-data/       notes.txt            writing/
-Desktop/    pizza.cfg
-molecules/  solar.pdf</code></pre>
+<pre class="output"><code>src/     scripts/    data/    thesis/</code></pre>
 <p>However, there’s nothing in it yet:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -F thesis</code></pre>
 <p>Let’s change our working directory to <code>thesis</code> using <code>cd</code>, then run a text editor called Nano to create a file called <code>draft.txt</code>:</p>
@@ -181,16 +179,16 @@ thesis/quotations.txt</code></pre>
 <pre><code>$ pwd
 /Users/jamie/data
 $ ls
-proteins.dat
-$ mkdir recombine
-$ mv proteins.dat recombine
-$ cp recombine/proteins.dat ../proteins-saved.dat
+topo_global.nc
+$ mkdir domain
+$ mv topo_global.nc domain
+$ cp domain/topo_global.nc ../topo-saved.nc
 $ ls</code></pre>
 <ol style="list-style-type: decimal">
-<li><code>proteins-saved.dat recombine</code></li>
-<li><code>recombine</code></li>
-<li><code>proteins.dat recombine</code></li>
-<li><code>proteins-saved.dat</code></li>
+<li><code>topo-saved.nc domain</code></li>
+<li><code>domain</code></li>
+<li><code>topo_global.nc domain</code></li>
+<li><code>topo-saved.nc</code></li>
 </ol>
 </div>
 </section>
@@ -201,12 +199,12 @@ $ ls</code></pre>
 <div class="panel-body">
 <p>Jamie is working on a project and she sees that her files aren’t very well organized:</p>
 <pre><code>$ ls -F
-analyzed/  fructose.dat    raw/   sucrose.dat</code></pre>
-<p>The <code>fructose.dat</code> and <code>sucrose.dat</code> files contain output from her data analysis. What command(s) covered in this lesson does she need to run so that the commands below will produce the output shown?</p>
+analyzed/  meanTemp2010.nc    raw/   hydro.dat</code></pre>
+<p>The <code>meanTemp2010.nc</code> and <code>hydro.dat</code> files contain output from her data analysis. What command(s) covered in this lesson does she need to run so that the commands below will produce the output shown?</p>
 <pre><code>$ ls -F
 analyzed/   raw/
 $ ls analyzed
-fructose.dat    sucrose.dat</code></pre>
+hydro.dat    meanTemp2010.nc</code></pre>
 </div>
 </section>
 <section class="challenge panel panel-success">

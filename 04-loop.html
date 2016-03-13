@@ -43,23 +43,28 @@
 </ul>
 </div>
 </section>
-<p><strong>Loops</strong> are key to productivity improvements through automation as they allow us to execute commands repetitively. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). Suppose we have several hundred surface model files named <code>SJER2013_DSMHill.tif</code>, <code>SJER2013_DSM.tif</code>, and so on. In this example, we’ll use the <code>DigitalSurfaceModel</code> directory which only has four example files, but the principles can be applied to many many more files at once. We would like to modify these files, but also save a version of the original files, naming the copies <code>original-SJER2013_DSMHill.tif</code> and <code>original-SJER2013_DSM.tif</code>. We can’t use:</p>
+<p><strong>Loops</strong> are key to productivity improvements through automation as they allow us to execute commands repetitively. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). Suppose we have several hundred Landsat-derived NDVI raster files named <code>005_HARV_ndvi_crop.tif</code>, <code>037_HARV_ndvi_crop.tif</code>, and so on. In this example, we’ll use the <code>NEON-DS-Landsat-NDVI/HARV/2011/NDVI</code> directory which only has thirteen example files, but the principles can be applied to many many more files at once. We would like to modify these files, but also save a version of the original files, naming the copies <code>original-005_HARV_ndvi_crop.tif</code> and <code>original-037_HARV_ndvi_crop.tif</code>. We can’t use:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> *.tif original-*.tif</code></pre>
-<p>because that would expand to:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> SJER2013_DSMHill.tif SJER2013_DSM.tif original-*.tif</code></pre>
+<p>because <code>*.tif</code> would expand to:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">005_HARV_ndvi_crop.tif</span>  133_HARV_ndvi_crop.tif  213_HARV_ndvi_crop.tif  261_HARV_ndvi_crop.tif 
+<span class="kw">037_HARV_ndvi_crop.tif</span>  181_HARV_ndvi_crop.tif  229_HARV_ndvi_crop.tif  277_HARV_ndvi_crop.tif
+<span class="kw">085_HARV_ndvi_crop.tif</span>  197_HARV_ndvi_crop.tif  245_HARV_ndvi_crop.tif  293_HARV_ndvi_crop.tif
+<span class="kw">309_HARV_ndvi_crop.tif</span></code></pre>
+<p>And you cannot copy several files into <code>original-*.tif</code></p>
 <p>This wouldn’t back up our files, instead we get an error:</p>
 <pre class="error"><code>cp: target `original-*.tif&#39; is not a directory</code></pre>
-<p>This a problem arises when <code>cp</code> receives more than two inputs. When this happens, it expects the last input to be a directory where it can copy all the files it was passed. Since there is no directory named <code>original-*.tif</code> in the <code>DigitalSurfaceModel</code> directory we get an error.</p>
+<p>This a problem arises when <code>cp</code> receives more than two inputs. When this happens, it expects the last input to be a directory where it can copy all the files it was passed. Since there is no directory named <code>original-*.tif</code> in the <code>NEON-DS-Landsat-NDVI/HARV/2011/NDVI</code> directory we get an error.</p>
 <p>Instead, we can use a <strong>loop</strong> to do some operation once for each thing in a list. Here’s a simple example that displays the first three lines of each file in our previous <code>InSitu_Data</code> directory:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">for</span> <span class="kw">filename</span> in  lidarExtractedValues.csv SJERPlotCentroids.csv 
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> ~/Documents/data/NEON-DS-Landsat-NDVI/HARV/2011/NDVI
+$ <span class="kw">for</span> <span class="kw">filename</span> in  005_HARV_ndvi_crop.tif 037_HARV_ndvi_crop.tif 085_HARV_ndvi_crop.tif
 <span class="kw">&gt;</span> <span class="kw">do</span>
-<span class="kw">&gt;</span>    <span class="kw">head</span> -1 <span class="ot">$filename</span>
+<span class="kw">&gt;</span>    <span class="kw">echo</span> <span class="st">&quot;File to process: </span><span class="ot">$filename</span><span class="st">&quot;</span>
 <span class="kw">&gt;</span> <span class="kw">done</span></code></pre>
-<pre class="output"><code>Rowid_,PLOT_ID,ZONE_CODE,COUNT,AREA,MIN,MAX,RANGE,MEAN,STD,SUM
-Plot_ID,Point,northing,easting,Remarks</code></pre>
-<p>When the shell sees the keyword <code>for</code>, it knows it is supposed to repeat a command (or group of commands) once for each thing in a list. In this case, the list is the two filenames. Each time through the loop, the name of the thing currently being operated on is assigned to the <strong>variable</strong> called <code>filename</code>. Inside the loop, we get the variable’s value by putting <code>$</code> in front of it: <code>$filename</code> is <code>lidarExtractedValues.csv</code> the first time through the loop, <code>SJERPlotCentroids.csv</code> the second, and so on. In this case, the command tells us what the columns in our Comma Separated Value file are called.</p>
+<pre class="output"><code>File to process: 005_HARV_ndvi_crop.tif
+File to process: 037_HARV_ndvi_crop.tif
+File to process: 085_HARV_ndvi_crop.tif</code></pre>
+<p>When the shell sees the keyword <code>for</code>, it knows it is supposed to repeat a command (or group of commands) once for each thing in a list. In this case, the list is the three filenames. Each time through the loop, the name of the thing currently being operated on is assigned to the <strong>variable</strong> called <code>filename</code>. Inside the loop, we get the variable’s value by putting <code>$</code> in front of it: <code>$filename</code> is <code>005_HARV_ndvi_crop.tif</code> the first time through the loop, <code>037_HARV_ndvi_crop.tif</code> the second, and so on. In this case, the command prints (echoes) the filename to process but we could call a R program and run it over each filename.</p>
 <p>By using the dollar sign we are telling the shell interpreter to treat <code>filename</code> as a variable name and substitute its value on its place, but not as some text or external command. When using variables it is also possible to put the names into curly braces to clearly delimit the variable name: <code>$filename</code> is equivalent to <code>${filename}</code>, but is different from <code>${file}name</code>. You may find this notation in other people’s programs.</p>
-<p>Finally, the command that’s actually being run is our old friend <code>head</code>, so this loop prints out the first three lines of each data file in turn.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pushpin"></span>Follow the Prompt</h2>
@@ -69,94 +74,84 @@ Plot_ID,Point,northing,easting,Remarks</code></pre>
 </div>
 </aside>
 <p>We have called the variable in this loop <code>filename</code> in order to make its purpose clearer to human readers. The shell itself doesn’t care what the variable is called; if we wrote this loop as:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">x</span> in lidarExtractedValues.csv SJERPlotCentroids.csv
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">x</span> in 005_HARV_ndvi_crop.tif 037_HARV_ndvi_crop.tif 085_HARV_ndvi_crop.tif
 <span class="kw">do</span>
-    <span class="kw">head</span> -1 <span class="ot">$x</span>
+    <span class="kw">echo</span> <span class="st">&quot;File to process: </span><span class="ot">$x</span><span class="st">&quot;</span>
 <span class="kw">done</span></code></pre>
 <p>or:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">temperature</span> in lidarExtractedValues.csv SJERPlotCentroids.csv
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">temperature</span> in 005_HARV_ndvi_crop.tif 037_HARV_ndvi_crop.tif 085_HARV_ndvi_crop.tif
 <span class="kw">do</span>
-    <span class="kw">head</span> -3 <span class="ot">$temperature</span>
+    <span class="kw">echo</span> <span class="st">&quot;File to process: </span><span class="ot">$temperature</span><span class="st">&quot;</span>
 <span class="kw">done</span></code></pre>
 <p>it would work exactly the same way. <em>Don’t do this.</em> Programs are only useful if people can understand them, so meaningless names (like <code>x</code>) or misleading names (like <code>temperature</code>) increase the odds that the program won’t do what its readers think it does.</p>
 <p>Here’s a slightly more complicated loop:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">filename</span> in *.csv
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">filename</span> in *.tif
 
 <span class="kw">do</span> 
-    <span class="kw">echo</span> <span class="ot">$filename</span>    
-    <span class="kw">head</span> -15 <span class="ot">$filename</span> <span class="kw">|</span> <span class="kw">tail</span> -5
+    <span class="kw">echo</span> <span class="st">&quot;File to process: </span><span class="ot">$filename</span><span class="st">&quot;</span>    
+    <span class="kw">gdalinfo</span> <span class="ot">$filename</span> <span class="kw">|</span> <span class="kw">tail</span> -5
 <span class="kw">done</span></code></pre>
-<p>The shell starts by expanding <code>*.csv</code> to create the list of files it will process. The <strong>loop body</strong> then executes three commands for each of those files. The first, <code>echo</code>, just prints its command-line parameters to standard output. For example:</p>
+<p>The shell starts by expanding <code>*.tif</code> to create the list of files it will process. The <strong>loop body</strong> then executes three commands for each of those files. The first, <code>echo</code>, just prints its command-line parameters to standard output. For example:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">echo</span> hello there</code></pre>
 <p>prints:</p>
 <pre class="output"><code>hello there</code></pre>
-<p>In this case, since the shell expands <code>$filename</code> to be the name of a file, <code>echo $filename</code> just prints the name of the file. Note that we can’t write this as:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">filename</span> in *.csv
+<p>In this case, since the shell expands <code>$filename</code> to be the name of a file, <code>echo &quot;File to process: $filename&quot;</code> just prints the name of the file after “File to process:”. Note that we can’t write this as:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">filename</span> in *.tif
 <span class="kw">do</span>
     <span class="ot">$filename</span>
-    <span class="kw">head</span> -20 <span class="ot">$filename</span> <span class="kw">|</span> <span class="kw">tail</span> -5
+    <span class="kw">gdalinfo</span> <span class="ot">$filename</span> <span class="kw">|</span> <span class="kw">tail</span> -5
 <span class="kw">done</span></code></pre>
-<p>because then the first time through the loop, when <code>$filename</code> expanded to <code>D17_2013_vegStr.csv</code>, the shell would try to run <code>D17_2013_vegStr.csv</code> as a program. Finally, the <code>head</code> and <code>tail</code> combination selects lines 16-20 from whatever file is being processed.</p>
-<p>If we want easier readable output, we can do</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">filename</span> in *.csv
-
-<span class="kw">do</span> 
-    <span class="kw">echo</span>
-    <span class="kw">echo</span> <span class="st">&quot;#FILE#: </span><span class="ot">$filename</span><span class="st">&quot;</span>    
-    <span class="kw">head</span> -15 <span class="ot">$filename</span> <span class="kw">|</span> <span class="kw">tail</span> -5
-<span class="kw">done</span></code></pre>
-<p>Dan you explain what these commands do?</p>
+<p>because then the first time through the loop, when <code>$filename</code> expanded to <code>005_HARV_ndvi_crop.tif</code>, the shell would try to run <code>005_HARV_ndvi_crop.tif</code> as a program. Finally, the <code>gdalinfo</code> command returns information about the raster data and <code>tail</code> combination selects last 5 lines from whatever file is being processed.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pushpin"></span>Spaces in Names</h2>
 </div>
 <div class="panel-body">
 <p>Filename expansion in loops is another reason you should not use spaces in filenames. Suppose our data files are named:</p>
-<pre><code>D17_2013_vegStr.csv  
-D17_2013_vegStr extraInfo.csv
-D17_2013_vegStr_metadata_desc.csv</code></pre>
+<pre><code>005_HARV_ndvi_crop.tif  
+005_HARV_ndvi_crop extraInfo.tif
+005_HARV_ndvi_crop_data_desc.tif</code></pre>
 <p>If we try to process them using:</p>
-<pre><code>for filename in *.csv
+<pre><code>for filename in *.tif
 do
-    head -20 $filename | tail -5
+    gdalinfo $filename | tail -5
 done</code></pre>
-<p>then the shell will expand <code>*.csv</code> to create:</p>
-<pre><code>D17_2013_vegStr.csv  extraInfo.csv  D17_2013_vegStr_metadata_desc.csv</code></pre>
-<p>With older versions of Bash, or most other shells, <code>filename</code> will then be assigned the following values in turn:</p>
-<pre><code>D17_2013_vegStr.csv
-extraInfo.csv
-D17_2013_vegStr_metadata_desc.csv</code></pre>
-<p>That’s a problem: <code>head</code> can’t read a file called <code>extraInfo.csv</code> because it doesn’t exist, and won’t be asked to read the file <code>D17_2013_vegStr extraInfo.csv</code>.</p>
+<p>then most bash shell will expand <code>*.tif</code> to create:</p>
+<pre><code>005_HARV_ndvi_crop.tif 005_HARV_ndvi_crop extraInfo.tif 005_HARV_ndvi_crop_data_desc.tif </code></pre>
+<p>That’s a problem: <code>gdalinfo</code> can’t read a file called <code>005_HARV_ndvi_crop</code> because it doesn’t exist, and won’t be asked to read the file <code>005_HARV_ndvi_crop extraInfo.tif</code>.</p>
 <p>We can make our script a little bit more robust by <strong>quoting</strong> our use of the variable:</p>
-<pre><code>for filename in *.dat
+<pre><code>for filename in *.tif
 do
-    head -20 &quot;$filename&quot; | tail -5
+    gdalinfo &quot;$filename&quot; | tail -5
 done</code></pre>
 <p>but it’s simpler just to avoid using spaces (or other special characters) in filenames.</p>
 </div>
 </aside>
 <p>Going back to our original file copying problem, we can solve it using this loop:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">filename</span> in *.csv
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">filename</span> in *.tif
 <span class="kw">do</span>
-    <span class="kw">cp</span> <span class="ot">$filename</span> original-<span class="ot">$filename</span>
+    <span class="kw">cp</span> <span class="st">&quot;</span><span class="ot">$filename</span><span class="st">&quot;</span> original-<span class="st">&quot;</span><span class="ot">$filename</span><span class="st">&quot;</span>
 <span class="kw">done</span></code></pre>
-<p>This loop runs the <code>cp</code> command once for each filename. The first time, when <code>$filename</code> expands to <code>D17_2013_vegStr.csv</code>, the shell executes:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cp</span> D17_2013_vegStr.csv original-D17_2013_vegStr.csv</code></pre>
+<p>This loop runs the <code>cp</code> command once for each filename. The first time, when <code>$filename</code> expands to <code>005_HARV_ndvi_crop.tif</code>, the shell executes:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cp</span> 005_HARV_ndvi_crop.tif original-005_HARV_ndvi_crop.tif</code></pre>
 <p>The second time, the command is:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cp</span> D17_2013_vegStr_metadata_desc.csv original-D17_2013_vegStr_metadata_desc.csv</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cp</span> 037_HARV_ndvi_crop.tif original-037_HARV_ndvi_crop.tif</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pushpin"></span>Measure Twice, Run Once</h2>
 </div>
 <div class="panel-body">
 <p>A loop is a way to do many things at once — or to make many mistakes at once if it does the wrong thing. One way to check what a loop <em>would</em> do is to echo the commands it would run instead of actually running them. For example, we could write our file copying loop like this:</p>
-<pre><code>for filename in *.csv
+<pre><code>for filename in *.tif
 do
     echo cp $filename original-$filename
 done</code></pre>
 <p>Instead of running <code>cp</code>, this loop runs <code>echo</code>, which prints out:</p>
-<pre><code>cp D17_2013_vegStr.csv original-D17_2013_vegStr.csv
-cp D17_2013_vegStr_metadata_desc.csv original-D17_2013_vegStr_metadata_desc.csv</code></pre>
+<pre><code>cp 005_HARV_ndvi_crop.tif original-005_HARV_ndvi_crop.tif
+cp 037_HARV_ndvi_crop.tif original-037_HARV_ndvi_crop.tif
+.
+.
+.</code></pre>
 <p><em>without</em> actually running those commands. We can then use up-arrow to redisplay the loop, back-arrow to get to the word <code>echo</code>, delete it, and then press “enter” to run the loop with the actual <code>cp</code> commands. This isn’t foolproof, but it’s a handy way to see what’s going to happen when you’re still learning how loops work.</p>
 </div>
 </aside>
@@ -167,12 +162,12 @@ cp D17_2013_vegStr_metadata_desc.csv original-D17_2013_vegStr_metadata_desc.csv<
 <div class="panel-body">
 <p>Another way to repeat previous work is to use the <code>history</code> command to get a list of the last few hundred commands that have been executed, and then to use <code>!123</code> (where “123” is replaced by the command number) to repeat one of those commands. For example, if Jessica types this:</p>
 <pre><code>$ history | tail -5
-  456  ls -l NENE0*.txt
+  456  ls -l *.txt
   457  rm stats-NENE01729B.txt.txt
-  458  bash goostats NENE01729B.txt stats-NENE01729B.txt
-  459  ls -l NENE0*.txt
+  458  for filename in *.tif; do     cp &quot;$filename&quot; original-&quot;$filename&quot;; done
+  459  ls -l original-*.tif
   460  history</code></pre>
-<p>then she can re-run <code>goostats</code> on <code>NENE01729B.txt</code> simply by typing <code>!458</code>.</p>
+<p>then she can re-run <code>ls -l *.txt</code> simply by typing <code>!456</code>.</p>
 </div>
 </aside>
 <section class="challenge panel panel-success">
@@ -181,14 +176,14 @@ cp D17_2013_vegStr_metadata_desc.csv original-D17_2013_vegStr_metadata_desc.csv<
 </div>
 <div class="panel-body">
 <p>Suppose that <code>ls</code> initially displays:</p>
-<pre><code>fructose.dat    glucose.dat   sucrose.dat</code></pre>
+<pre><code>rh.grib    temperature.grib   vo.grib</code></pre>
 <p>What is the output of:</p>
-<pre><code>for datafile in *.dat
+<pre><code>for datafile in *.grib
 do
-    ls *.dat
+    ls *.grib
 done</code></pre>
 <p>Now, what is the output of:</p>
-<pre><code>for datafile in *.dat
+<pre><code>for datafile in *.grib
 do
   ls $datafile
 done</code></pre>
@@ -201,15 +196,15 @@ done</code></pre>
 </div>
 <div class="panel-body">
 <p>In the same directory, what is the effect of this loop?</p>
-<pre><code>for sugar in *.dat
+<pre><code>for file in *.grib
 do
-    echo $sugar
-    cat $sugar &gt; xylose.dat
+    echo $file
+    cat $file &gt; bigfile.grib
 done</code></pre>
 <ol style="list-style-type: decimal">
-<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and the text from <code>sucrose.dat</code> will be saved to a file called <code>xylose.dat</code>.</li>
-<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and the text from all three files would be concatenated and saved to a file called <code>xylose.dat</code>.</li>
-<li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, <code>sucrose.dat</code>, and <code>xylose.dat</code>, and the text from <code>sucrose.dat</code> will be saved to a file called <code>xylose.dat</code>.</li>
+<li>Prints <code>rh.grib</code>, <code>temperature.grib</code>, and <code>vo.grib</code>, and the content from <code>vo.grib</code> will be saved to a file called <code>bigfile.grib</code>.</li>
+<li>Prints <code>rh.grib</code>, <code>temperature.grib</code>, and <code>vo.grib</code>, and the text from all three files would be concatenated and saved to a file called <code>bigfile.grib</code>.</li>
+<li>Prints <code>rh.grib</code>, <code>temperature.grib</code>, <code>vo.grib</code>, and <code>bigfile.dat</code>, and the text from <code>vo.grib</code> will be saved to a file called <code>bigfile.grib</code>.</li>
 <li>None of the above.</li>
 </ol>
 </div>
@@ -220,17 +215,17 @@ done</code></pre>
 </div>
 <div class="panel-body">
 <p>In another directory, where <code>ls</code> returns:</p>
-<pre><code>fructose.dat    glucose.dat   sucrose.dat   maltose.txt</code></pre>
+<pre><code>rh.grib    temperature.grib   vo.grib   z.txt</code></pre>
 <p>What would be the output of the following loop?</p>
-<pre><code>for datafile in *.dat
+<pre><code>for datafile in *.grib
 do
-    cat $datafile &gt;&gt; sugar.dat
+    cat $datafile &gt;&gt; file.grib
 done</code></pre>
 <ol style="list-style-type: decimal">
-<li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code> and <code>sucrose.dat</code> would be concatenated and saved to a file called <code>sugar.dat</code>.</li>
-<li>The text from <code>sucrose.dat</code> will be saved to a file called <code>sugar.dat</code>.</li>
-<li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code>, <code>sucrose.dat</code> and <code>maltose.txt</code> would be concatenated and saved to a file called <code>sugar.dat</code>.</li>
-<li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code> and <code>sucrose.dat</code> would be printed to the screen and saved to a file called <code>sugar.dat</code></li>
+<li>All of the content from <code>rh.grib</code>, <code>temperature.grib</code> and <code>vo.grib</code> would be concatenated and saved to a file called <code>file.grib</code>.</li>
+<li>The content from <code>vo.grib</code> will be saved to a file called <code>file.grib</code>.</li>
+<li>All of the content from <code>rh.grib</code>, <code>temperature.grib</code>, <code>vo.grib</code> and <code>z.txt</code> would be concatenated and saved to a file called <code>file.grib</code>.</li>
+<li>All of the content from <code>rh.grib</code>, <code>temperature.grib</code> and <code>vo.grib</code> would be printed to the screen and saved to a file called <code>file.grib</code></li>
 </ol>
 </div>
 </section>
@@ -240,18 +235,18 @@ done</code></pre>
 </div>
 <div class="panel-body">
 <p>Suppose we want to preview the commands the following loop will execute without actually running those commands:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">file</span> in *.dat
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">file</span> in *.grib
 <span class="kw">do</span>
   <span class="kw">analyze</span> <span class="ot">$file</span> <span class="kw">&gt;</span> analyzed-<span class="ot">$file</span>
 <span class="kw">done</span></code></pre>
 <p>What is the difference between the two loops below, and which one would we want to run?</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Version 1</span>
-<span class="kw">for</span> <span class="kw">file</span> in *.dat
+<span class="kw">for</span> <span class="kw">file</span> in *.grib
 <span class="kw">do</span>
   <span class="kw">echo</span> analyze <span class="ot">$file</span> <span class="kw">&gt;</span> analyzed-<span class="ot">$file</span>
 <span class="kw">done</span></code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Version 2</span>
-<span class="kw">for</span> <span class="kw">file</span> in *.dat
+<span class="kw">for</span> <span class="kw">file</span> in *.grib
 <span class="kw">do</span>
   <span class="kw">echo</span> <span class="st">&quot;analyze </span><span class="ot">$file</span><span class="st"> &gt; analyzed-</span><span class="ot">$file</span><span class="st">&quot;</span>
 <span class="kw">done</span></code></pre>

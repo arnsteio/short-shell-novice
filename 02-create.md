@@ -27,9 +27,13 @@ $ pwd
 $ ls -F
 ~~~
 ~~~ {.output}
-creatures/  molecules/           pizza.cfg
-data/       north-pacific-gyre/  solar.pdf
-Desktop/    notes.txt            writing/
+Applications/ Documents/    Library/      Music/        Public/
+Desktop/      Downloads/    Movies/       Pictures/
+~~~
+Change directory and go to Documents:
+
+~~~ {.bash}
+$ cd Documents
 ~~~
 
 Let's create a new directory called `thesis` using the command `mkdir thesis`
@@ -49,10 +53,7 @@ the new directory is created in the current working directory:
 $ ls -F
 ~~~
 ~~~ {.output}
-creatures/  north-pacific-gyre/  thesis/
-data/       notes.txt            writing/
-Desktop/    pizza.cfg
-molecules/  solar.pdf
+src/     scripts/    data/    thesis/
 ~~~
 
 However, there's nothing in it yet:
@@ -360,17 +361,17 @@ but it does find the copy in `thesis` that we didn't delete.
 > $ pwd
 > /Users/jamie/data
 > $ ls
-> proteins.dat
-> $ mkdir recombine
-> $ mv proteins.dat recombine
-> $ cp recombine/proteins.dat ../proteins-saved.dat
+> topo_global.nc
+> $ mkdir domain
+> $ mv topo_global.nc domain
+> $ cp domain/topo_global.nc ../topo-saved.nc
 > $ ls
 > ~~~
 >
-> 1.   `proteins-saved.dat recombine`
-> 2.   `recombine`
-> 3.   `proteins.dat recombine`
-> 4.   `proteins-saved.dat`
+> 1.   `topo-saved.nc domain`
+> 2.   `domain`
+> 3.   `topo_global.nc domain`
+> 4.   `topo-saved.nc`
 
 > ## Organizing Directories and Files {.challenge}
 >
@@ -379,10 +380,10 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > ~~~
 > $ ls -F
-> analyzed/  fructose.dat    raw/   sucrose.dat
+> analyzed/  meanTemp2010.nc    raw/   hydro.dat
 > ~~~
 >
-> The `fructose.dat` and `sucrose.dat` files contain output from her data
+> The `meanTemp2010.nc` and `hydro.dat` files contain output from her data
 > analysis. What command(s) covered in this lesson does she need to run so that the commands below will
 > produce the output shown?
 >
@@ -390,7 +391,7 @@ but it does find the copy in `thesis` that we didn't delete.
 > $ ls -F
 > analyzed/   raw/
 > $ ls analyzed
-> fructose.dat    sucrose.dat
+> hydro.dat    meanTemp2010.nc
 > ~~~
 
 > ## Copy with Multiple Filenames {.challenge}
@@ -418,3 +419,4 @@ but it does find the copy in `thesis` that we didn't delete.
 > The command `ls -t` lists things by time of last change,
 > with most recently changed files or directories first.
 > In what order does `ls -R -t` display things?
+

@@ -28,9 +28,9 @@ These lessons will start you on a path towards using these resources effectively
 >
 > You need to download some files to follow this lesson:
 >
-> 1. Download [CHM_InSitu_Data.zip](http://www.neonhighered.org/Data/LidarActivity/CHM_InSitu_Data.zip) and move the file to your Desktop.
-> 2. Double-click on the zip file to unzip it. You should end up with several new folders - `DigitalSurfaceModel`, `DigitalTerrainModel`, `InSitu_Data` and `PlotCentroid_Shapefile`.
-> 3. Open a terminal and type:
+> 1. Make sure you have followed the [setup instructions](http://neondataskills.org/workshop-event/NEON-Data-Carpentry-Spatio-Temporal-Oslo-03-15) and downloaded the required datasets.
+> 2. [Set Working Directory](http://neondataskills.org/workshop-event/NEON-Data-Carpentry-Spatio-Temporal-Oslo-03-15#set-working-directory-1). You should end up with several new folders - `NEON-DS-Airborne-Remote-Sensing`, `NEON-DS-Landsat-NDVI`, `NEON-DS-Site-Layout-Files` and `Global`.
+> 3. Open a [bash terminal](http://neondataskills.org/workshop-event/NEON-Data-Carpentry-Spatio-Temporal-Oslo-03-15#bash-setup) and type:
 >
 > ~~~ {.input}
 > $ cd
@@ -43,15 +43,9 @@ These lessons will start you on a path towards using these resources effectively
 1.  [Introducing the Shell](00-intro.html)
 2.  [Files and Directories](01-filedir.html)
 3.  [Creating Things](02-create.html)
-4.  [Pipes and Filters](03-pipefilter.html)
-5.  [Loops](04-loop.html)
-6.  [Getting the data set](05-dataset.html)
+4.  [Loops](04-loop.html)
+5.  [Getting the data set](05-dataset.html)
 6.  [Setting up R and other things](06-setup.html)
-
-<!--(We're dropping these because of time constraints
-6.  [Shell Scripts](05-script.html)
-7.  [Finding Things](06-find.html)
-)-->
 
 ## Other Resources
 
